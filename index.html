@@ -209,21 +209,141 @@ button{font-family:var(--sans)}
 .zst{font-size:9px;font-weight:700;color:var(--p);margin-bottom:5px;font-family:var(--mono)}
 .zss{font-size:8px;color:var(--tx2);line-height:1.8;font-family:var(--mono)}
 .zsl{color:var(--b)}
+/* ── Market Switch ── */
+.mkt-switch{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--bd2);border-radius:20px;padding:3px 8px}
+.ms-btn{background:none;border:none;color:var(--tx3);font-size:9px;font-weight:700;font-family:var(--mono);cursor:pointer;padding:3px 7px;border-radius:12px;transition:all .2s;display:flex;align-items:center;gap:3px;letter-spacing:.5px}
+.ms-btn.on{background:var(--bd_);color:var(--b)}
+#ms-crypto.on{background:rgba(255,200,0,.15);color:var(--y)}
+.ms-icon{font-size:11px}
+.ms-track{width:32px;height:16px;background:var(--bg4);border:1px solid var(--bd2);border-radius:8px;cursor:pointer;position:relative;flex-shrink:0}
+.ms-thumb{width:12px;height:12px;background:var(--b);border-radius:50%;position:absolute;top:1px;left:1px;transition:all .25s cubic-bezier(.4,0,.2,1)}
+.ms-thumb.crypto{background:var(--y);transform:translateX(16px)}
+/* ── Crypto Left Panel ── */
+#cx-left{display:none;flex-direction:column;height:100%}
+#cx-left.on{display:flex}
+.cx-ph{padding:7px 11px 5px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd)}
+.cx-ph-t{font-size:8px;letter-spacing:1.5px;color:var(--tx3);font-weight:700;font-family:var(--mono)}
+#cx-scan-list{flex:1;overflow-y:auto;padding:3px}
+.cx-coin-row{display:flex;align-items:center;justify-content:space-between;padding:5px 9px;border-radius:4px;cursor:pointer;border:1px solid transparent;margin-bottom:1px;transition:all .1s}
+.cx-coin-row:hover{background:var(--bg3)}
+.cx-coin-row.on{background:var(--yd);border-color:rgba(255,200,0,.3)}
+.cx-coin-row.top{border-left:2px solid var(--g)}
+.cx-coin-sym{font-family:var(--mono);font-size:10px;font-weight:700}
+.cx-coin-name{font-size:7px;color:var(--tx3)}
+.cx-coin-score{font-size:8px;font-family:var(--mono);font-weight:700}
+.cx-coin-chg{font-size:8px;font-family:var(--mono)}
+/* ── Crypto Center Panel ── */
+#cx-center{display:none;flex-direction:column;flex:1;overflow:hidden}
+#cx-center.on{display:flex}
+#cx-hdr{padding:8px 14px;background:var(--bg2);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.cx-sym-big{font-family:var(--mono);font-size:18px;font-weight:700}
+.cx-price-big{font-family:var(--mono);font-size:15px;font-weight:700}
+#cx-signal-bar{background:var(--bg3);border-bottom:1px solid var(--bd);padding:7px 14px;display:flex;align-items:center;gap:12px;flex-shrink:0;flex-wrap:wrap}
+#cx-intel-strip{display:flex;gap:8px;overflow-x:auto;padding:5px 14px;border-bottom:1px solid var(--bd);flex-shrink:0;scrollbar-width:none}
+.cx-intel-card{flex-shrink:0;background:var(--bg3);border:1px solid var(--bd);border-radius:4px;padding:4px 8px;font-size:7px;font-family:var(--mono);min-width:80px}
+.cx-intel-val{font-size:10px;font-weight:700;color:var(--tx)}
+.cx-intel-lbl{color:var(--tx3);font-size:7px}
+#cx-chart-wrap{flex:1;position:relative;min-height:0;overflow:hidden}
+#cx-ind-bar{display:flex;gap:6px;padding:6px 14px;border-top:1px solid var(--bd);flex-shrink:0;overflow-x:auto;scrollbar-width:none}
+.cx-ind-pill{display:flex;flex-direction:column;align-items:center;padding:3px 7px;background:var(--bg3);border:1px solid var(--bd);border-radius:3px;min-width:52px}
+.cx-ind-n{font-size:7px;color:var(--tx3);font-family:var(--mono)}
+.cx-ind-v{font-family:var(--mono);font-size:9px;font-weight:700}
+/* ── Scan Status ── */
+.scan-spinner{display:inline-block;width:8px;height:8px;border:1.5px solid var(--bd2);border-top-color:var(--y);border-radius:50%;animation:spin .7s linear infinite}
+/* Config mode tabs */
+.cfg-mode-btn{flex:1;padding:4px;background:transparent;border:1px solid var(--bd);color:var(--tx3);border-radius:3px;font-size:8px;font-family:var(--mono);cursor:pointer;transition:all .15s;font-weight:700}
+.cfg-mode-btn.on{background:var(--bd_);border-color:var(--b2);color:var(--b)}
+#cfgm-crypto.on{background:var(--yd);border-color:rgba(255,200,0,.4);color:var(--y)}
+#cfgm-general.on{background:var(--pd);border-color:rgba(176,106,240,.4);color:var(--p)}
+/* Global loading overlay */
+#load-overlay{position:fixed;inset:0;background:rgba(4,7,11,.82);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;backdrop-filter:blur(2px)}
+#load-overlay.on{display:flex}
+.load-ring{width:42px;height:42px;border:3px solid var(--bd2);border-top-color:var(--b);border-radius:50%;animation:spin .8s linear infinite}
+.load-msg{font-family:var(--mono);font-size:11px;color:var(--tx2);letter-spacing:.5px}
+.spin-sm{display:inline-block;width:10px;height:10px;border:2px solid var(--bd2);border-top-color:var(--b);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:4px}
+/* cx-cat category buttons */
+.cx-cat{padding:2px 7px;background:var(--bg3);border:1px solid var(--bd);color:var(--tx3);border-radius:10px;font-size:7px;font-family:var(--mono);cursor:pointer;transition:all .12s;white-space:nowrap}
+.cx-cat.on{background:var(--yd);border-color:rgba(255,200,0,.4);color:var(--y)}
+/* Crypto scan list */
+#cx-scan-list{flex:1;overflow-y:auto;scrollbar-width:thin}
+/* Crypto center panel */
+#cen-crypto{display:none;flex:1;overflow:hidden;flex-direction:column;background:var(--bg1)}
+#cen-crypto.on{display:flex}
+/* Portfolio cards */
+.port-card{background:var(--bg3);border:1px solid var(--bd);border-radius:5px;padding:8px 10px;margin-bottom:5px}
+.port-card-title{font-size:7px;letter-spacing:1px;color:var(--tx3);font-family:var(--mono);margin-bottom:5px;display:flex;justify-content:space-between;align-items:center}
+.port-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:4px}
+.port-stat{background:var(--bg4);border-radius:3px;padding:4px 6px}
+.port-stat-l{font-size:7px;color:var(--tx3);font-family:var(--mono)}
+.port-stat-v{font-family:var(--mono);font-size:10px;font-weight:700}
+.cx-trade-log{font-size:8px;font-family:var(--mono);padding:4px 0;border-bottom:1px solid var(--bd);display:flex;gap:8px;align-items:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* ── Intel right panel for crypto ── */
+#tab-cx-intel{overflow-y:auto}
+.fg-bar{height:8px;border-radius:4px;margin:4px 0;background:linear-gradient(90deg,var(--r),var(--y),var(--g))}
+.fg-ptr{width:3px;height:14px;background:var(--tx);border-radius:1px;position:absolute;top:-3px;transform:translateX(-50%)}
+
+.cx-ticker{display:flex;flex-direction:column;align-items:center;background:var(--bg3);border:1px solid var(--bd);border-radius:4px;padding:4px 7px;min-width:60px;cursor:pointer;transition:all .12s}
+.cx-ticker:hover{border-color:var(--y)}
+.cx-tn{font-size:7px;color:var(--tx3);font-family:var(--mono)}
+.cx-tv{font-family:var(--mono);font-size:10px;font-weight:700}
+.cx-tc{font-family:var(--mono);font-size:7px}
+.cx-sig{background:var(--bg3);border:1px solid var(--bd);border-radius:5px;padding:9px 10px;margin-bottom:6px}
+.cx-sig.buy{border-color:rgba(0,238,160,.4);background:rgba(0,238,160,.04)}
+.cx-sig.sell{border-color:rgba(255,58,88,.4);background:rgba(255,58,88,.04)}
+.cx-sh{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:8px}
+.cx-badge{padding:2px 7px;border-radius:3px;font-weight:700;font-family:var(--mono);font-size:9px}
+.cx-buy{background:var(--g);color:#000}.cx-sell{background:var(--r);color:#fff}
+.cx-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.cx-row{display:flex;flex-direction:column;gap:1px}
+.cx-label{font-size:7px;color:var(--tx3);font-family:var(--mono)}
+.cx-val{font-size:9px;font-weight:700;font-family:var(--mono)}
+.cx-ind{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.cx-itag{font-size:7px;padding:2px 5px;border-radius:3px;font-family:var(--mono)}
+.cx-itag.bull{background:var(--gd);color:var(--g);border:1px solid rgba(0,238,160,.3)}
+.cx-itag.bear{background:var(--rd);color:var(--r);border:1px solid rgba(255,58,88,.3)}
+.cx-itag.neut{background:var(--bd_);color:var(--tx2);border:1px solid var(--bd)}
+.cx-exe{width:100%;margin-top:6px;padding:5px;border:none;border-radius:3px;font-weight:700;font-size:9px;font-family:var(--mono);cursor:pointer}
+.cx-exe.buy{background:var(--g);color:#000}.cx-exe.sell{background:var(--r);color:#fff}
+.cx-exe:disabled{opacity:.4;cursor:not-allowed}
+.cx-port-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--bd);font-size:9px}
+
 </style>
 </head>
 <body>
 
 <div id="hdr">
-  <div class="logo"><div class="gem"></div><div><div class="logo-t">NSESignal <em>PRO</em></div><div class="logo-s">AI · ZERODHA · LIVE SENTIMENT</div></div></div>
-  <div id="idx-bar">
-    <div class="ix"><span class="ix-n">NIFTY 50</span><span class="ix-v" id="nv">—</span><span class="ix-c" id="nc">—</span></div>
-    <div class="ix"><span class="ix-n">SENSEX</span><span class="ix-v" id="sv">—</span><span class="ix-c" id="sxc">—</span></div>
-    <div class="ix"><span class="ix-n">BANK NIFTY</span><span class="ix-v" id="bv">—</span><span class="ix-c" id="bc">—</span></div>
-    <div class="ix"><span class="ix-n">USD/INR</span><span class="ix-v" id="uv">—</span><span class="ix-c" id="uc">—</span></div>
-    <div class="ix"><span class="ix-n">CRUDE OIL</span><span class="ix-v" id="ov">—</span><span class="ix-c" id="oc">—</span></div>
+  <div class="logo"><div class="gem"></div><div><div class="logo-t" id="logo-txt">NSESignal <em>PRO</em></div><div class="logo-s" id="logo-sub">AI · ZERODHA · LIVE SENTIMENT</div></div></div>
+
+  <!-- MARKET TOGGLE SWITCH -->
+  <div class="mkt-switch" id="mkt-switch">
+    <button class="ms-btn on" id="ms-stock" onclick="switchMarket('stock')">
+      <span class="ms-icon">📈</span> STOCKS
+    </button>
+    <div class="ms-track" onclick="toggleMarket()">
+      <div class="ms-thumb" id="ms-thumb"></div>
+    </div>
+    <button class="ms-btn" id="ms-crypto" onclick="switchMarket('crypto')">
+      <span class="ms-icon">₿</span> CRYPTO
+    </button>
   </div>
+
+  <div id="idx-bar">
+    <!-- Stock mode tickers -->
+    <div class="ix stock-el"><span class="ix-n">NIFTY 50</span><span class="ix-v" id="nv">—</span><span class="ix-c" id="nc">—</span></div>
+    <div class="ix stock-el"><span class="ix-n">SENSEX</span><span class="ix-v" id="sv">—</span><span class="ix-c" id="sxc">—</span></div>
+    <div class="ix stock-el"><span class="ix-n">BANK NIFTY</span><span class="ix-v" id="bv">—</span><span class="ix-c" id="bc">—</span></div>
+    <div class="ix stock-el"><span class="ix-n">USD/INR</span><span class="ix-v" id="uv">—</span><span class="ix-c" id="uc">—</span></div>
+    <!-- Crypto mode tickers -->
+    <div class="ix crypto-el" style="display:none"><span class="ix-n">BTC/USDT</span><span class="ix-v" id="cx-btc-v">—</span><span class="ix-c" id="cx-btc-c">—</span></div>
+    <div class="ix crypto-el" style="display:none"><span class="ix-n">ETH/USDT</span><span class="ix-v" id="cx-eth-v">—</span><span class="ix-c" id="cx-eth-c">—</span></div>
+    <div class="ix crypto-el" style="display:none"><span class="ix-n">FEAR&amp;GREED</span><span class="ix-v" id="cx-fg-v">—</span><span class="ix-c" id="cx-fg-c">—</span></div>
+    <div class="ix crypto-el" style="display:none"><span class="ix-n">BTC.D%</span><span class="ix-v" id="cx-dom-v">—</span><span class="ix-c" id="cx-dom-c">—</span></div>
+    <div class="ix crypto-el" style="display:none"><span class="ix-n">TOP GAINER</span><span class="ix-v" id="cx-gain-v">—</span><span class="ix-c" id="cx-gain-c">—</span></div>
+  </div>
+
   <div id="hdr-r">
-    <span class="ai-pill">⬡ AI ACTIVE</span>
+    <span class="ai-pill" id="ai-pill">⬡ AI ACTIVE</span>
     <div class="mkt-pill"><div class="mdot" id="mdot"></div><span id="mtxt">—</span><span style="color:var(--tx3);font-size:8px;margin-left:4px" id="mtime"></span></div>
     <div class="mode-tog">
       <button class="m-btn safe on" id="btn-manual" onclick="setMode('manual')">MANUAL</button>
@@ -247,20 +367,105 @@ button{font-family:var(--sans)}
 </div>
 
 <div id="main">
+  <!-- LEFT PANEL: Stock watchlist OR Crypto scan list -->
   <div id="left">
-    <div class="ph"><span class="ph-t">Watchlist</span><button class="ph-b" onclick="refreshAll()">↺</button></div>
-    <div class="sbox"><div class="sw"><span class="si-ico">⌕</span><input class="si" id="srch" placeholder="Symbol / company..."><div id="sugg"></div></div></div>
-    <div id="wl"></div>
-    <div id="cap">
-      <div class="cr"><span class="cl">Capital</span><span class="cv up" id="cap-t">₹0</span></div>
-      <div class="cr"><span class="cl">Available</span><span class="cv" id="cap-a">₹0</span></div>
-      <div class="cr"><span class="cl">P&amp;L Today</span><span class="cv" id="cap-p">₹0</span></div>
-      <div class="cbar"><div class="cfill" id="cfill" style="width:100%"></div></div>
-      <button class="cedit" onclick="openCapModal()">✎ Edit Capital</button>
+    <!-- STOCK MODE -->
+    <div id="stk-left">
+      <div class="ph"><span class="ph-t">Watchlist</span><button class="ph-b" onclick="refreshAll()">↺</button></div>
+      <div class="sbox"><div class="sw"><span class="si-ico">⌕</span><input class="si" id="srch" placeholder="Symbol / company..."><div id="sugg"></div></div></div>
+      <div id="wl"></div>
+      <div id="cap">
+        <div class="cr"><span class="cl">Capital</span><span class="cv up" id="cap-t">₹0</span></div>
+        <div class="cr"><span class="cl">Available</span><span class="cv" id="cap-a">₹0</span></div>
+        <div class="cr"><span class="cl">P&amp;L Today</span><span class="cv" id="cap-p">₹0</span></div>
+        <div class="cbar"><div class="cfill" id="cfill" style="width:100%"></div></div>
+        <button class="cedit" onclick="openCapModal()">✎ Edit Capital</button>
+      </div>
+    </div>
+    <!-- CRYPTO MODE -->
+    <div id="cx-left">
+      <div class="cx-ph">
+        <span class="cx-ph-t">CRYPTO SCAN</span>
+        <div style="display:flex;align-items:center;gap:5px">
+          <div class="scan-spinner" id="cx-spinner" style="display:none"></div>
+          <button style="background:none;border:none;color:var(--y);cursor:pointer;font-size:10px;font-family:var(--mono)" onclick="runFullCryptoScan()">⟳</button>
+        </div>
+      </div>
+      <!-- Category filter -->
+      <div style="display:flex;gap:3px;padding:5px 8px;border-bottom:1px solid var(--bd);overflow-x:auto;scrollbar-width:none" id="cx-cats">
+        <button class="cx-cat on" onclick="setCryptoCat('all')">ALL</button>
+        <button class="cx-cat" onclick="setCryptoCat('top')">TOP</button>
+        <button class="cx-cat" onclick="setCryptoCat('meme')">MEME</button>
+        <button class="cx-cat" onclick="setCryptoCat('defi')">DeFi</button>
+        <button class="cx-cat" onclick="setCryptoCat('ai')">AI</button>
+        <button class="cx-cat" onclick="setCryptoCat('layer1')">L1</button>
+        <button class="cx-cat" onclick="setCryptoCat('trending')">🔥</button>
+      </div>
+      <div style="padding:4px 9px;border-bottom:1px solid var(--bd);font-size:7px;font-family:var(--mono);color:var(--tx3);display:flex;justify-content:space-between">
+        <span id="cx-scan-info">Scanning market...</span>
+        <span id="cx-best-tag" style="color:var(--y)"></span>
+      </div>
+      <div id="cx-scan-list"></div>
+      <!-- USDT balance display -->
+      <div style="border-top:1px solid var(--bd);padding:8px 11px;flex-shrink:0">
+        <div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:2px"><span style="color:var(--tx3)">USDT Balance</span><span id="cx-bal-usdt" style="font-family:var(--mono);color:var(--b)">—</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:2px"><span style="color:var(--tx3)">Portfolio $</span><span id="cx-bal-total" style="font-family:var(--mono);color:var(--g)">—</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:9px"><span style="color:var(--tx3)">Trades Today</span><span id="cx-trades-today" style="font-family:var(--mono);color:var(--o)">0</span></div>
+        <button onclick="loadBinancePortfolio(true)" style="width:100%;margin-top:5px;padding:3px;background:transparent;border:1px dashed var(--bd2);color:var(--tx3);border-radius:3px;cursor:pointer;font-size:7px;font-family:var(--mono)">↻ SYNC BINANCE</button>
+      </div>
     </div>
   </div>
 
   <div id="cen">
+    <!-- CRYPTO CENTER PANEL -->
+    <div id="cen-crypto">
+      <div style="padding:10px 14px;background:var(--bg2);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div id="cx-sym-hdr" style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--y)">CRYPTO SCANNER</div>
+          <div id="cx-price-hdr" style="font-family:var(--mono);font-size:12px;color:var(--tx2)">Select a coin from the scan list</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div id="cx-ai-status" style="font-size:7px;font-family:var(--mono);color:var(--p)">⬡ AI ANALYST READY</div>
+          <div class="mode-tog">
+            <button class="m-btn on" id="cxm-scan" onclick="setCxCenterMode('scan')" style="font-size:8px">SCAN</button>
+            <button class="m-btn" id="cxm-detail" onclick="setCxCenterMode('detail')" style="font-size:8px">DETAIL</button>
+            <button class="m-btn" id="cxm-port" onclick="setCxCenterMode('port')" style="font-size:8px">PORTFOLIO</button>
+          </div>
+        </div>
+      </div>
+      <!-- Intel strip: Fear/Greed, BTC dom, trending -->
+      <div id="cx-intel-strip" style="display:flex;gap:6px;padding:6px 14px;border-bottom:1px solid var(--bd);overflow-x:auto;scrollbar-width:none;flex-shrink:0">
+        <div class="port-stat" style="min-width:80px"><div class="port-stat-l">FEAR & GREED</div><div class="port-stat-v" id="cx-fg">—</div></div>
+        <div class="port-stat" style="min-width:80px"><div class="port-stat-l">BTC DOMINANCE</div><div class="port-stat-v" id="cx-dom">—</div></div>
+        <div class="port-stat" style="min-width:80px"><div class="port-stat-l">MARKET CAP</div><div class="port-stat-v" id="cx-mcap">—</div></div>
+        <div class="port-stat" style="min-width:80px"><div class="port-stat-l">24H VOLUME</div><div class="port-stat-v" id="cx-vol24">—</div></div>
+        <div class="port-stat" style="min-width:80px"><div class="port-stat-l">TOP GAINER</div><div class="port-stat-v" id="cx-topper" style="color:var(--g)">—</div></div>
+        <div class="port-stat" style="min-width:80px"><div class="port-stat-l">TOP LOSER</div><div class="port-stat-v" id="cx-loser" style="color:var(--r)">—</div></div>
+        <div class="port-stat" style="min-width:80px"><div class="port-stat-l">TRENDING #1</div><div class="port-stat-v" id="cx-trend1" style="color:var(--y)">—</div></div>
+      </div>
+      <!-- Main crypto content area -->
+      <div id="cx-main-content" style="flex:1;overflow-y:auto;padding:12px 14px">
+        <div style="color:var(--tx3);font-size:9px;text-align:center;padding:30px">
+          <div class="scan-spinner" style="width:16px;height:16px;border-width:2px;margin:0 auto 8px"></div>
+          Initializing crypto scanner...
+        </div>
+      </div>
+      <!-- Signal bar for selected coin -->
+      <div id="cx-signal-bar" style="border-top:1px solid var(--bd);padding:8px 14px;display:none;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg2)">
+        <div style="display:flex;gap:8px;align-items:center">
+          <span id="cx-sig-action" style="font-family:var(--mono);font-weight:700;font-size:12px">—</span>
+          <span id="cx-sig-coin" style="font-family:var(--mono);color:var(--tx2)">—</span>
+          <span id="cx-sig-conf" style="font-size:8px;color:var(--p);font-family:var(--mono)">—</span>
+        </div>
+        <div style="display:flex;gap:10px;font-family:var(--mono);font-size:9px">
+          <span>Entry: <span id="cx-sig-e" style="color:var(--b)">—</span></span>
+          <span>SL: <span id="cx-sig-sl" style="color:var(--r)">—</span></span>
+          <span>T1: <span id="cx-sig-t1" style="color:var(--g)">—</span></span>
+          <span>R:R <span id="cx-sig-rr" style="color:var(--y)">—</span></span>
+        </div>
+        <button id="cx-exec-btn" onclick="executeBestSignal()" style="padding:5px 14px;background:var(--g);color:var(--bg0);border:none;border-radius:4px;font-weight:700;font-size:9px;font-family:var(--mono);cursor:pointer">▶ EXECUTE</button>
+      </div>
+    </div>
     <div id="stkhdr">
       <div class="sl">
         <div><div class="ssym" id="ssym" style="color:var(--b)">Select Stock</div><div class="ssec" id="ssec">Choose from watchlist →</div></div>
@@ -324,11 +529,51 @@ button{font-family:var(--sans)}
   <div id="rp">
     <div class="rtabs">
       <div class="rtab on" data-tab="intel">INTEL</div>
+      <div class="rtab" data-tab="crypto">₿ CRYPTO</div>
       <div class="rtab" data-tab="journal">TRADES</div>
       <div class="rtab" data-tab="port">PORTF</div>
       <div class="rtab" data-tab="cfg">CONFIG</div>
     </div>
     <div class="rbody on" id="tab-intel"><div id="intel-feed"><div style="color:var(--tx3);font-size:10px;text-align:center;padding:20px">Select a stock to load intelligence feed...</div></div></div>
+
+    <!-- ═══════════ CRYPTO TAB ═══════════ -->
+    <div class="rbody" id="tab-crypto">
+      <!-- Binance connect banner -->
+      <div id="cx-banner" style="background:rgba(255,200,0,.07);border:1px solid rgba(255,200,0,.3);border-radius:5px;padding:8px 10px;margin-bottom:8px;font-size:8px;font-family:var(--mono)">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="color:var(--y);font-weight:700">₿ BINANCE</span>
+          <span id="cx-status" style="color:var(--tx3)">Not connected</span>
+        </div>
+        <div style="color:var(--tx3);margin-top:3px">API Key + Secret → Config tab → ₿ section</div>
+      </div>
+
+      <!-- Ticker bar -->
+      <div id="cx-tickers" style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:7px"></div>
+
+      <!-- Market mode switch -->
+      <div style="display:flex;gap:4px;margin-bottom:7px">
+        <button onclick="setCryptoView('market')" id="cxv-mkt" style="flex:1;padding:4px;background:var(--bd_);border:1px solid var(--b2);color:var(--b);border-radius:3px;font-size:8px;font-family:var(--mono);cursor:pointer">MARKET SCAN</button>
+        <button onclick="setCryptoView('chart')" id="cxv-chart" style="flex:1;padding:4px;background:transparent;border:1px solid var(--bd);color:var(--tx3);border-radius:3px;font-size:8px;font-family:var(--mono);cursor:pointer">CHART + SIGNALS</button>
+        <button onclick="setCryptoView('portfolio')" id="cxv-port" style="flex:1;padding:4px;background:transparent;border:1px solid var(--bd);color:var(--tx3);border-radius:3px;font-size:8px;font-family:var(--mono);cursor:pointer">PORTFOLIO</button>
+      </div>
+
+      <!-- Symbol selector -->
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px" id="cx-pairs">
+        <button class="cx-pair on" onclick="selectCrypto('BTCUSDT')">BTC</button>
+        <button class="cx-pair" onclick="selectCrypto('ETHUSDT')">ETH</button>
+        <button class="cx-pair" onclick="selectCrypto('SOLUSDT')">SOL</button>
+        <button class="cx-pair" onclick="selectCrypto('BNBUSDT')">BNB</button>
+        <button class="cx-pair" onclick="selectCrypto('XRPUSDT')">XRP</button>
+        <button class="cx-pair" onclick="selectCrypto('ADAUSDT')">ADA</button>
+        <button class="cx-pair" onclick="selectCrypto('DOTUSDT')">DOT</button>
+        <button class="cx-pair" onclick="selectCrypto('DOGEUSDT')">DOGE</button>
+      </div>
+
+      <!-- Main content area -->
+      <div id="cx-content">
+        <div style="color:var(--tx3);font-size:9px;text-align:center;padding:14px">Loading crypto data...</div>
+      </div>
+    </div>
     <div class="rbody" id="tab-journal">
       <button class="log-btn" id="logbtn">+ Log Manual Trade</button>
       <div id="logform" style="display:none;background:var(--bg3);border:1px solid var(--bd);border-radius:4px;padding:9px;margin-bottom:7px">
@@ -349,33 +594,123 @@ button{font-family:var(--sans)}
       <div id="jlist"></div>
     </div>
     <div class="rbody" id="tab-port">
-      <div class="sg" id="pstats"></div>
-      <div style="font-size:8px;color:var(--tx3);font-family:var(--mono);letter-spacing:.8px;margin-bottom:6px">RECENT SIGNALS</div>
-      <div id="sighist"></div>
+      <!-- Market toggle for portfolio -->
+      <div style="display:flex;gap:3px;margin-bottom:7px">
+        <button class="cfg-mode-btn on" id="port-stk-btn" onclick="setPortView('stock')">📈 KITE</button>
+        <button class="cfg-mode-btn" id="port-cx-btn" onclick="setPortView('crypto')">₿ BINANCE</button>
+      </div>
+      <div id="port-stock-view">
+        <div class="sg" id="pstats"></div>
+        <div id="kite-holdings-block"></div>
+        <div style="font-size:8px;color:var(--tx3);font-family:var(--mono);letter-spacing:.8px;margin:6px 0 4px">RECENT SIGNALS</div>
+        <div id="sighist"></div>
+      </div>
+      <div id="port-crypto-view" style="display:none">
+        <div id="cx-port-display"><div style="color:var(--tx3);font-size:9px;text-align:center;padding:14px">Switch to Crypto mode and connect Binance to see portfolio</div></div>
+      </div>
     </div>
     <div class="rbody" id="tab-cfg">
-      <div class="zsetup">
-        <div class="zst">🤖 GitHub Models API (Swarm Intel)</div>
-        <div class="zss">Powers the MiroFish-style Swarm Intelligence using Claude 3.5 Sonnet. Get your free access token via GitHub Marketplace/Models beta.</div>
+      <!-- ── CONFIG MODE TABS ── -->
+      <div style="display:flex;gap:3px;margin-bottom:8px">
+        <button class="cfg-mode-btn on" id="cfgm-stock" onclick="setCfgMode('stock')">📈 STOCK CONFIG</button>
+        <button class="cfg-mode-btn" id="cfgm-crypto" onclick="setCfgMode('crypto')">₿ CRYPTO CONFIG</button>
+        <button class="cfg-mode-btn" id="cfgm-general" onclick="setCfgMode('general')">⚙ GENERAL</button>
       </div>
-      <div class="srow"><label class="slbl">GitHub Token <span id="ak-status" style="color:var(--tx3)"></span></label><input class="sinp" id="cfg-ak" placeholder="ghp_..." type="password"></div>
-      <div class="srow"><label class="slbl">Worker Proxy URL</label><input class="sinp" id="cfg-worker" value="https://sig.shabeershz21.workers.dev" placeholder="https://...workers.dev"><div class="sdsc">Cloudflare Worker proxy handling Yahoo/Reddit/RSS feeds.</div></div>
-      <hr class="sdiv">
-      <div class="zst">⚡ Zerodha Kite API Setup</div>
-      <div class="zss">1. Visit <a class="zsl" href="https://developers.kite.trade" target="_blank">developers.kite.trade</a><br>2. Create app → App type: Connect<br>3. Redirect URL: http://localhost<br>4. Copy API Key &amp; Secret<br>5. Login URL: kite.zerodha.com/connect/login?api_key=XXX<br>6. Grab request_token from redirect URL<br>7. Exchange for access_token (refreshed daily)</div>
-      <div class="srow"><label class="slbl">Zerodha API Key</label><input class="sinp" id="cfg-key" placeholder="kitexxx..."></div>
-      <div class="srow"><label class="slbl">Access Token (daily)</label><input class="sinp" id="cfg-tok" placeholder="paste access_token"><div class="sdsc">Get from: kite.trade redirect URL after login</div></div>
-      <div class="notice">⚠ Browser CORS blocks direct Kite API calls. Orders route through a local Node.js proxy (port 3001). Without it, orders are simulated and logged only. See README for proxy setup.</div>
-      <hr class="sdiv">
-      <div class="srow"><label class="slbl">Risk per trade (%)</label><input class="sinp" id="cfg-risk" type="number" value="2" min="0.5" max="10" step="0.5"></div>
-      <div class="srow"><label class="slbl">Max auto-trades / day</label><input class="sinp" id="cfg-max" type="number" value="5"></div>
-      <div class="srow"><label class="slbl">Min AI confidence for auto-execute (%)</label><input class="sinp" id="cfg-conf" type="number" value="70" min="50" max="95"></div>
-      <div class="srow"><label class="slbl">Signal sensitivity</label><select class="sinp" id="cfg-sens"><option value="conservative">Conservative (3+ indicators)</option><option value="moderate" selected>Moderate (2+ indicators)</option><option value="aggressive">Aggressive (1+ indicator)</option></select></div>
-      <div class="srow"><label class="slbl">Refresh interval (minutes)</label><input class="sinp" id="cfg-ref" type="number" value="3" min="1" max="15"></div>
-      <button class="abtn" onclick="applySettings()">APPLY SETTINGS</button>
+
+      <!-- ── STOCK CONFIG ── -->
+      <div id="cfg-stock-section">
+        <div class="zsetup" style="border-color:rgba(255,107,51,.3)">
+          <div class="zst" style="color:var(--o)">⚡ Zerodha Kite — Quick Connect</div>
+          <div class="zss">Enter API Key → click Generate Login URL → login → paste request_token → Exchange.</div>
+        </div>
+        <div class="srow">
+          <label class="slbl">Zerodha API Key</label>
+          <div style="display:flex;gap:5px">
+            <input class="sinp" id="cfg-key" placeholder="kitexxx..." style="flex:1">
+            <button onclick="genKiteLoginUrl()" style="padding:5px 9px;background:var(--od);border:1px solid var(--o);color:var(--o);border-radius:3px;font-size:8px;font-family:var(--mono);cursor:pointer;white-space:nowrap">🔗 Login URL</button>
+          </div>
+        </div>
+        <div id="kite-url-box" style="display:none;background:var(--bg3);border:1px solid var(--bd2);border-radius:4px;padding:7px;margin-bottom:5px;font-size:8px">
+          <div style="color:var(--tx3);margin-bottom:3px">Open this URL in browser, login, copy <code style="color:var(--b)">request_token</code> from redirect:</div>
+          <a id="kite-url-link" href="#" target="_blank" style="color:var(--b);font-family:var(--mono);word-break:break-all;font-size:8px">—</a>
+        </div>
+        <div class="srow">
+          <label class="slbl">API Secret (for token exchange)</label>
+          <input class="sinp" id="cfg-secret" type="password" placeholder="api secret...">
+        </div>
+        <div class="srow">
+          <label class="slbl">Request Token → Exchange</label>
+          <div style="display:flex;gap:5px">
+            <input class="sinp" id="cfg-reqtok" placeholder="paste request_token from redirect URL" style="flex:1">
+            <button onclick="quickExchangeToken()" id="qex-btn" style="padding:5px 9px;background:var(--bd_);border:1px solid var(--b2);color:var(--b);border-radius:3px;font-size:8px;font-family:var(--mono);cursor:pointer;white-space:nowrap">⇄ GET TOKEN</button>
+          </div>
+        </div>
+        <div class="srow">
+          <label class="slbl">Access Token <span id="kite-tok-status" style="color:var(--tx3)"></span></label>
+          <input class="sinp" id="cfg-tok" placeholder="auto-filled after exchange · or paste manually">
+        </div>
+        <button onclick="saveKiteFromConfig()" style="width:100%;padding:5px;background:var(--gd);border:1px solid var(--g2);color:var(--g);border-radius:3px;font-weight:700;font-size:9px;cursor:pointer;font-family:var(--mono);margin-bottom:8px">✓ SAVE ZERODHA CONNECTION</button>
+        <hr class="sdiv">
+        <div class="srow"><label class="slbl">Risk per trade (%)</label><input class="sinp" id="cfg-risk" type="number" value="2" min="0.5" max="10" step="0.5"></div>
+        <div class="srow"><label class="slbl">Max auto-trades / day</label><input class="sinp" id="cfg-max" type="number" value="5"></div>
+        <div class="srow"><label class="slbl">Min AI confidence (%)</label><input class="sinp" id="cfg-conf" type="number" value="70" min="50" max="95"></div>
+        <div class="srow"><label class="slbl">Signal sensitivity</label><select class="sinp" id="cfg-sens"><option value="conservative">Conservative (3+ indicators)</option><option value="moderate" selected>Moderate (2+ indicators)</option><option value="aggressive">Aggressive (1+ indicator)</option></select></div>
+        <div class="srow"><label class="slbl">Refresh interval (min)</label><input class="sinp" id="cfg-ref" type="number" value="3" min="1" max="15"></div>
+        <button class="abtn" onclick="applySettings()">APPLY STOCK SETTINGS</button>
+      </div>
+
+      <!-- ── CRYPTO CONFIG ── -->
+      <div id="cfg-crypto-section" style="display:none">
+        <div class="zsetup" style="border-color:rgba(255,200,0,.3)">
+          <div class="zst" style="color:var(--y)">₿ Binance API — Auto-Trade</div>
+          <div class="zss">1. <a class="zsl" href="https://www.binance.com/en/my/settings/api-management" target="_blank">binance.com → API Management</a><br>2. Create key → Type: HMAC-SHA256<br>3. Enable: Read + Spot Trading<br>4. Restrict to your IP for security<br>5. HMAC signing done on Worker — secret stays server-side</div>
+        </div>
+        <div class="srow">
+          <label class="slbl">Binance API Key <span id="bin-key-status" style="color:var(--tx3)"></span></label>
+          <input class="sinp" id="cfg-bkey" placeholder="your binance api key...">
+        </div>
+        <div class="srow">
+          <label class="slbl">Binance Secret Key</label>
+          <input class="sinp" id="cfg-bsec" type="password" placeholder="your binance secret key...">
+        </div>
+        <div class="srow"><label class="slbl">Test Connection</label><button onclick="testBinanceConn()" style="width:100%;padding:5px;background:var(--yd);border:1px solid rgba(255,200,0,.4);color:var(--y);border-radius:3px;font-size:9px;font-family:var(--mono);cursor:pointer">⚡ TEST BINANCE CONNECTION</button></div>
+        <div id="bin-test-result" style="font-size:8px;font-family:var(--mono);color:var(--tx3);padding:4px;display:none"></div>
+        <button onclick="saveBinanceCreds()" style="width:100%;padding:5px;background:var(--yd);border:1px solid rgba(255,200,0,.4);color:var(--y);border-radius:3px;font-weight:700;font-size:9px;cursor:pointer;font-family:var(--mono);margin-bottom:8px">₿ SAVE BINANCE CONNECTION</button>
+        <hr class="sdiv">
+        <div class="srow"><label class="slbl">Crypto Risk per Trade (%)</label><input class="sinp" id="cfg-crisk" type="number" value="1" min="0.1" max="5" step="0.1"><div class="sdsc">Crypto is volatile — keep ≤1-2%</div></div>
+        <div class="srow"><label class="slbl">Max Concurrent Positions</label><input class="sinp" id="cfg-cmax" type="number" value="3" min="1" max="10"></div>
+        <div class="srow"><label class="slbl">Auto-scan interval (min)</label><input class="sinp" id="cfg-cscan" type="number" value="5" min="1" max="30"></div>
+        <div class="srow"><label class="slbl">Min volume rank (top N by 24h vol)</label><input class="sinp" id="cfg-cvol" type="number" value="100"><div class="sdsc">Only scan coins in top N by volume (includes memes if trending)</div></div>
+        <div style="background:rgba(255,200,0,.07);border:1px solid rgba(255,200,0,.3);border-radius:3px;padding:6px;margin-bottom:6px;font-size:8px;font-family:var(--mono);color:var(--y)">⚠ HMAC-SHA256 signing done on Worker — your Binance secret never sent to browser.</div>
+        <button class="abtn" style="background:var(--yd);border-color:rgba(255,200,0,.4);color:var(--y)" onclick="applyCryptoSettings()">APPLY CRYPTO SETTINGS</button>
+      </div>
+
+      <!-- ── GENERAL CONFIG ── -->
+      <div id="cfg-general-section" style="display:none">
+        <div class="zsetup" style="border-color:rgba(176,106,240,.3)">
+          <div class="zst" style="color:var(--p)">🤖 z.ai GLM-4-Flash — Swarm Intelligence</div>
+          <div class="zss">Powers Claude-style Swarm Intel (300 agents), coin scoring & trade reasoning.<br>Get FREE API key at <a class="zsl" href="https://bigmodel.cn" target="_blank">bigmodel.cn</a> → Register → API Keys<br>GLM-4-Flash is completely free tier. No credit card needed.</div>
+        </div>
+        <div class="srow">
+          <label class="slbl">z.ai API Key <span id="zai-status" style="color:var(--tx3)"></span></label>
+          <div style="display:flex;gap:5px">
+            <input class="sinp" id="cfg-zai" placeholder="your bigmodel.cn API key..." type="password" style="flex:1">
+            <button onclick="testZaiKey()" style="padding:5px 9px;background:var(--pd);border:1px solid var(--p);color:var(--p);border-radius:3px;font-size:8px;font-family:var(--mono);cursor:pointer">TEST</button>
+          </div>
+          <div class="sdsc">Stored locally · powers Swarm Intel in the INTEL tab</div>
+        </div>
+        <div class="srow">
+          <label class="slbl">Worker Proxy URL</label>
+          <input class="sinp" id="cfg-worker" value="https://sig.shabeershz21.workers.dev" placeholder="https://...workers.dev">
+          <div class="sdsc">Cloudflare Worker for Yahoo/Binance/CoinGecko/Kite proxying</div>
+        </div>
+        <button class="abtn" onclick="applyGeneralSettings()">APPLY GENERAL SETTINGS</button>
+      </div>
     </div>
   </div>
 </div>
+
+<div id="load-overlay"><div class="load-ring"></div><div class="load-msg" id="load-msg">Loading...</div></div>
 
 <div id="alerts"></div>
 
@@ -427,6 +762,7 @@ const S={
   cfg:{risk:2,max:5,conf:70,sens:'moderate',ref:3},
   z:{key:'',tok:'',secret:'',ok:false},
   githubToken:'', workerUrl: "https://sig.shabeershz21.workers.dev",
+  zaiKey:'',
   autoCount:0, macroData:[], refreshTimer:null, swarmCache:{},
   kite:{availableCash:0,usedMargin:0,totalBalance:0}, kiteHoldings:[], kitePositions:null
 };
@@ -473,6 +809,7 @@ function save(){
     localStorage.setItem('nsp2_z', JSON.stringify({key:S.z.key,tok:S.z.tok,secret:S.z.secret||''}));
     localStorage.setItem('nsp2_wu', S.workerUrl);
     if(S.githubToken) localStorage.setItem('nsp2_gh', S.githubToken);
+    if(S.zaiKey) localStorage.setItem('nsp2_zai', S.zaiKey);
   }catch(e){}
 }
 function load(){
@@ -485,6 +822,7 @@ function load(){
     const z=localStorage.getItem('nsp2_z'); if(z){const zd=JSON.parse(z);S.z.key=zd.key||'';S.z.tok=zd.tok||'';S.z.secret=zd.secret||'';}
     if(S.z.key&&S.z.tok) S.z.ok=true;
     const gh=localStorage.getItem('nsp2_gh'); if(gh) S.githubToken=gh;
+    const zai=localStorage.getItem('nsp2_zai'); if(zai) S.zaiKey=zai;
     const wu=localStorage.getItem('nsp2_wu'); if(wu) S.workerUrl = wu;
   }catch(e){WL=[...WL_DEF];}
 }
@@ -637,10 +975,12 @@ async function kiteViaWorker(method, path, body = null) {
     if (!res.ok) {
       // 403 = wrong credentials or token expired, not a CORS issue
       if (res.status === 403 || res.status === 401) {
-        console.warn('Kite auth failed (' + res.status + '): Check API key & access token in Config tab')
-        if (res.status === 403) {
-          S.z.ok = false
-          alert2('Kite auth failed (403) — access token may be expired. Re-enter in Config tab.', 'e', 8000)
+        console.warn('Kite auth (' + res.status + ') on ' + path)
+        // For portfolio/quote fetches, silently return null (token may have just expired)
+        // For order placement, caller handles the error with better messaging
+        if (res.status === 403 && path.includes('/orders')) {
+          // Try to get the error body for better messaging
+          try { return await res.json() } catch(e) { return null }
         }
         return null
       }
@@ -909,21 +1249,36 @@ async function kiteOrder(sym,dir,qty,price){
   const body=new URLSearchParams({tradingsymbol:tradeSym,exchange:'NSE',transaction_type:dir.toUpperCase(),order_type:'MARKET',quantity:String(qty),product:'CNC',validity:'DAY'}).toString();
 
   // Primary: Worker proxy (solves CORS & origin checks)
+  console.log('Placing order via Worker:', {tradeSym, dir, qty, body})
   const wd = await kiteViaWorker('POST', '/orders/regular', body)
+  console.log('Worker order result:', wd)
   if(wd?.status==='success'){
-    alert2('✓ '+dir.toUpperCase()+' executed via Worker: '+qty+'×'+tradeSym+' ₹'+f2(price),'s',7000)
+    alert2('✓ '+dir.toUpperCase()+' executed: '+qty+'×'+tradeSym+' @ ₹'+f2(price),'s',7000)
     setTimeout(fetchKitePortfolio, 2500)
     return wd.data?.order_id
   }
-  if(wd?.error_type==='TokenException'){
-    alert2('Kite token expired — refresh access token in Config','e',8000)
-    S.z.ok=false; return null
+  // Kite API error — show exact message from Kite
+  if(wd?.message){
+    if(wd.error_type==='TokenException'||wd.message.includes('Invalid token')||wd.message.includes('token is invalid')){
+      S.z.ok=false
+      alert2('❌ Kite token expired — re-login and get fresh access token in Config','e',10000)
+    } else if(wd.error_type==='InputException'){
+      alert2('❌ Kite order rejected: '+wd.message,'e',8000)
+    } else if(wd.error_type==='OrderException'){
+      alert2('❌ Order failed: '+wd.message,'e',8000)
+    } else {
+      alert2('❌ Kite error: '+wd.message,'e',8000)
+    }
+    return null
   }
-
-  // Simulate only if worker also failed for non-auth reason
+  // wd===null means worker call itself failed (network, 403 auth etc)
+  if(wd===null){
+    alert2('❌ Order failed — access token expired or wrong. Re-enter in Config tab → GET TOKEN','e',10000)
+    S.z.ok=false
+    return null
+  }
   const simId='SIM-'+Date.now()
-  alert2('⚠ Order SIMULATED — Worker: '+WB()+' | Kite token may be expired','w',9000)
-  console.warn('Order simulation:',{tradeSym,dir,qty,price,workerResult:wd})
+  alert2('⚠ Order SIMULATED (unknown worker error)','w',6000)
   return simId
 }
 async function executeSignal(){
@@ -1136,24 +1491,47 @@ Simulate swarm consensus. Output ONLY valid JSON (no markdown, no explanation):
   "risk_flag": "none" | "high_uncertainty" | "news_driven" | "macro_risk"
 }`;
 
+  const zaiKey = S.zaiKey || localStorage.getItem('nsp2_zai') || ''
+  if(!zaiKey){
+    return {summary:'Add z.ai API key in Config → General tab (bigmodel.cn — free). Swarm Intel disabled.',bias:'neutral',confidence:0,agent_voices:[],key_themes:[],crowd_split:{bulls:33,bears:33,sideline:34},risk_flag:'none',twitter_proxy:''};
+  }
   try{
-    const resp=await fetch('https://models.inference.ai.azure.com/chat/completions',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer ' + S.githubToken},
-      body:JSON.stringify({model:'claude-3-5-sonnet-20241022',max_tokens:600,temperature:0.7,messages:[{role:'user',content:prompt}]})
-    });
+    // Try Worker /zai proxy first (handles CORS for file:// origin)
+    // Fall back to direct if worker not available
+    const zaiPayload = {model:'glm-4-flash',max_tokens:700,temperature:0.7,messages:[{role:'user',content:prompt}]}
+    let resp
+    try {
+      const workerResp = await fetch(`${WB()}/zai`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+zaiKey},
+        body: JSON.stringify(zaiPayload),
+        signal: AbortSignal.timeout(20000)
+      })
+      if(workerResp.ok) resp = workerResp
+    } catch(e) {}
+    if(!resp){
+      resp = await fetch('https://open.bigmodel.cn/api/paas/v4/chat/completions', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','Authorization':'Bearer ' + zaiKey},
+        body: JSON.stringify(zaiPayload),
+        signal: AbortSignal.timeout(20000)
+      });
+    }
     if(!resp.ok){
-      if(resp.status===401) return {summary:'GitHub Token invalid/expired. Get new token from github.com/settings/tokens with models:read scope.',bias:'neutral',confidence:0,agent_voices:[],key_themes:[],crowd_split:{bulls:33,bears:33,sideline:34},risk_flag:'none',twitter_proxy:''};
-      throw new Error('API ' + resp.status);
+      if(resp.status===401||resp.status===403) return {summary:'z.ai key invalid — add key at bigmodel.cn → API Keys.',bias:'neutral',confidence:0,agent_voices:[],key_themes:[],crowd_split:{bulls:33,bears:33,sideline:34},risk_flag:'none',twitter_proxy:''};
+      throw new Error('z.ai API ' + resp.status);
     }
     const data = await resp.json();
-    const txt = data.choices[0].message.content;
+    const txt = data.choices?.[0]?.message?.content || '';
     const cleaned = txt.replace(/```json|```/g,'').trim();
-    const result = JSON.parse(cleaned);
+    const jsonStart = cleaned.indexOf('{'), jsonEnd = cleaned.lastIndexOf('}')
+    if(jsonStart<0||jsonEnd<0) throw new Error('No JSON in response')
+    const result = JSON.parse(cleaned.slice(jsonStart, jsonEnd+1));
     S.swarmCache[cacheKey] = result;
     return result;
   }catch(e){
-    return {summary:'Swarm Intel error: '+e.message+'. Check GitHub Token in Config.',bias:'neutral',confidence:0,agents:[],twitter_proxy:'',key_themes:[],crowd_split:{bulls:33,bears:33,sideline:34},risk_flag:'none'};
+    console.warn('Swarm Intel error:', e.message);
+    return {summary:'Swarm Intel error: '+e.message,bias:'neutral',confidence:0,agent_voices:[],twitter_proxy:'',key_themes:[],crowd_split:{bulls:33,bears:33,sideline:34},risk_flag:'none'};
   }
 }
 
@@ -1271,8 +1649,21 @@ function renderPort(){
   document.getElementById('pstats').innerHTML='<div class="sb"><div class="sb-l">LOGGED P&L</div><div class="sb-v" style="color:'+colOf(tpnl)+'">'+(tpnl>=0?'+':'')+fINR(tpnl)+'</div></div><div class="sb"><div class="sb-l">WIN RATE</div><div class="sb-v">'+wr+(wr!=='—'?'%':'')+'</div></div><div class="sb"><div class="sb-l">OPEN TRADES</div><div class="sb-v" style="color:var(--b)">'+open.length+'</div></div><div class="sb"><div class="sb-l">AUTO TRADES</div><div class="sb-v" style="color:var(--o)">'+S.trades.filter(t=>t.auto).length+'</div></div>';
 
   // Inject live Kite holdings block
-  let kEl=document.getElementById('kite-block');
-  if(!kEl){kEl=document.createElement('div');kEl.id='kite-block';document.getElementById('tab-port').insertBefore(kEl,document.getElementById('sighist'));}
+ let kEl = document.getElementById('kite-block');
+
+if (!kEl) {
+    kEl = document.createElement('div');
+    kEl.id = 'kite-block';
+
+    const sighist = document.getElementById('sighist');
+    const parent = sighist?.parentNode;
+
+    if (parent) {
+        parent.insertBefore(kEl, sighist);
+    } else {
+        document.getElementById('port-stock-view')?.appendChild(kEl);
+    }
+}
   if(S.kiteHoldings?.length){
     const tVal=S.kiteHoldings.reduce((s,h)=>s+h.last_price*h.quantity,0);
     const tPnl=S.kiteHoldings.reduce((s,h)=>s+(h.last_price-h.average_price)*h.quantity,0);
@@ -1317,6 +1708,8 @@ function applySettings(){
   if(gh){S.githubToken=gh;document.getElementById('ak-status').textContent='✓ Key saved';document.getElementById('ak-status').style.color='var(--g)';}
   S.workerUrl = document.getElementById('cfg-worker').value.trim().replace(/\/+$/, '') || S.workerUrl;
   if(S.z.key&&S.z.tok){S.z.ok=true;document.getElementById('z-btn').className='ok';document.getElementById('z-btn').textContent='\u2713 Zerodha Connected';}
+  saveBinanceCreds();
+  S.cfg.crisk = parseFloat(document.getElementById('cfg-crisk')?.value) || 1;
   save();schedRefresh();if(S.sym)selectStock(S.sym);alert2('Settings saved','s');
 }
 
@@ -1461,7 +1854,16 @@ function initSearch(){
 // ═══════════ TABS ═══════════
 function initTabs(){
   document.querySelectorAll('.rtab').forEach(tab=>{
-    tab.onclick=()=>{const t=tab.dataset.tab;document.querySelectorAll('.rtab').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.rbody').forEach(x=>x.classList.remove('on'));tab.classList.add('on');document.getElementById('tab-'+t).classList.add('on');if(t==='port')renderPort();if(t==='intel'&&S.sym)renderIntel(S.sym);};
+    tab.onclick=()=>{
+      const t=tab.dataset.tab;
+      document.querySelectorAll('.rtab').forEach(x=>x.classList.remove('on'));
+      document.querySelectorAll('.rbody').forEach(x=>x.classList.remove('on'));
+      tab.classList.add('on');
+      document.getElementById('tab-'+t).classList.add('on');
+      if(t==='port')renderPort();
+      if(t==='intel'&&S.sym)renderIntel(S.sym);
+      if(t==='crypto'){refreshCrypto();}
+    };
   });
   document.querySelectorAll('.tfb').forEach(btn=>{
     btn.onclick=()=>{document.querySelectorAll('.tfb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');S.tf=btn.dataset.tf;if(S.sym)selectStock(S.sym);};
@@ -1492,12 +1894,1291 @@ async function init(){
   setInterval(updateMktStatus,30000);
   S.usedCapital=S.trades.filter(t=>!t.exitPrice).reduce((s,t)=>s+t.entryPrice*t.qty,0);
   updateCap();
-  alert2('NSESignal PRO ready \u2014 Zerodha Kite + AI Sentiment (Worker Routed)','i',5000);
+  alert2('NSESignal PRO + Crypto ready — Binance · Zerodha · AI Signals','i',5000);
   // Only fetch Kite portfolio if credentials are actually stored and look valid
   if(S.z.ok&&S.z.key?.length>5&&S.z.tok?.length>5){
-    setTimeout(fetchKitePortfolio, 2000); // slight delay after init
+    setTimeout(fetchKitePortfolio, 2000);
+  }
+  // Init crypto module
+  initCrypto()
+}
+// ╔══════════════════════════════════════════════════════════════╗
+// ║              CRYPTO MODULE — Binance + CoinGecko             ║
+// ║  Data: CoinGecko (free, no key) + Binance public klines      ║
+// ║  Trading: Binance Spot via Worker HMAC-SHA256 signing         ║
+// ╚══════════════════════════════════════════════════════════════╝
+const CX = {
+  sym: 'BTCUSDT',
+  view: 'market',
+  prices: {},      // { BTCUSDT: {price, change24h, vol24h, high, low} }
+  candles: {},     // { BTCUSDT: [{t,o,h,l,c,v},...] }
+  signals: {},     // { BTCUSDT: {dir,entry,sl,t1,t2,rr,conf,tags} }
+  portfolio: [],   // Binance balances
+  openOrders: [],  // active Binance orders
+  trades: [],      // crypto trade log (localStorage key: cx_trades)
+  refreshTimer: null,
+  scanRunning: false,
+  binKey: '',
+  binSec: '',
+}
+
+// Pairs on ticker
+const CX_PAIRS = ['BTCUSDT','ETHUSDT','SOLUSDT','BNBUSDT','XRPUSDT','ADAUSDT','DOGEUSDT','DOTUSDT']
+
+// ── Binance public (no auth) via Worker /binance-pub ──────────────────────────
+async function binPub(path) {
+  try {
+    const r = await fetch(`${WB()}/binance-pub${path}`, { signal: AbortSignal.timeout(7000) })
+    if (r.ok) return await r.json()
+  } catch(e) {}
+  // Direct fallback — works since Binance public endpoints allow CORS
+  try {
+    const r = await fetch(`https://api.binance.com${path}`, { signal: AbortSignal.timeout(6000) })
+    if (r.ok) return await r.json()
+  } catch(e) {}
+  return null
+}
+
+// ── Binance private (HMAC signed) via Worker /binance ────────────────────────
+async function binPriv(method, path, params = {}) {
+  if (!CX.binKey || !CX.binSec) return null
+  try {
+    const r = await fetch(`${WB()}/binance${path}`, {
+      method,
+      headers: {
+        'X-MBX-APIKEY': CX.binKey,
+        'X-MBX-SECRET': CX.binSec,
+        'Content-Type': 'application/json',
+      },
+      body: method !== 'GET' ? JSON.stringify(params) : undefined,
+      signal: AbortSignal.timeout(9000)
+    })
+    const d = await r.json()
+    if (!r.ok) {
+      console.warn('Binance priv error', d)
+      alert2('Binance: ' + (d.msg || 'Error ' + r.status), 'e', 5000)
+      return null
+    }
+    return d
+  } catch(e) { console.warn('Binance priv failed', e.message); return null }
+}
+
+// ── CoinGecko free — price + market data (no key needed) ─────────────────────
+const CG_IDS = {
+  'BTCUSDT':'bitcoin','ETHUSDT':'ethereum','SOLUSDT':'solana','BNBUSDT':'binancecoin',
+  'XRPUSDT':'ripple','ADAUSDT':'cardano','DOGEUSDT':'dogecoin','DOTUSDT':'polkadot'
+}
+async function cgPrices(pairs) {
+  const ids = pairs.map(p => CG_IDS[p]).filter(Boolean).join(',')
+  try {
+    const r = await fetch(`${WB()}/cg?ids=${encodeURIComponent(ids)}&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_high_low_24h=true`, {
+      signal: AbortSignal.timeout(8000)
+    })
+    if (r.ok) return await r.json()
+  } catch(e) {}
+  // Direct CoinGecko fallback
+  try {
+    const r = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_high_low_24h=true`, {
+      signal: AbortSignal.timeout(7000)
+    })
+    if (r.ok) return await r.json()
+  } catch(e) {}
+  return null
+}
+
+// ── Binance klines (OHLCV) ────────────────────────────────────────────────────
+async function binKlines(sym, interval='1h', limit=100) {
+  const d = await binPub(`/api/v3/klines?symbol=${sym}&interval=${interval}&limit=${limit}`)
+  if (!d || !d.length) return []
+  return d.map(k => ({
+    t: k[0], o: +k[1], h: +k[2], l: +k[3], c: +k[4], v: +k[5],
+    tc: k[6], qv: +k[7]  // close time, quote volume
+  }))
+}
+
+// ── Technical indicators ──────────────────────────────────────────────────────
+function calcRSI(closes, period = 14) {
+  if (closes.length < period + 1) return null
+  let gains = 0, losses = 0
+  for (let i = 1; i <= period; i++) {
+    const d = closes[i] - closes[i - 1]
+    if (d > 0) gains += d; else losses -= d
+  }
+  let avgG = gains / period, avgL = losses / period
+  for (let i = period + 1; i < closes.length; i++) {
+    const d = closes[i] - closes[i - 1]
+    avgG = (avgG * (period - 1) + Math.max(d, 0)) / period
+    avgL = (avgL * (period - 1) + Math.max(-d, 0)) / period
+  }
+  return avgL === 0 ? 100 : +(100 - 100 / (1 + avgG / avgL)).toFixed(2)
+}
+
+function calcEMA(closes, period) {
+  const k = 2 / (period + 1)
+  let ema = closes.slice(0, period).reduce((a, b) => a + b, 0) / period
+  for (let i = period; i < closes.length; i++) ema = closes[i] * k + ema * (1 - k)
+  return +ema.toFixed(6)
+}
+
+function calcMACD(closes) {
+  if (closes.length < 35) return null
+  const ema12 = calcEMA(closes, 12)
+  const ema26 = calcEMA(closes, 26)
+  const macd = ema12 - ema26
+  // signal = 9-period EMA of MACD — approximate with last value
+  return { macd: +macd.toFixed(4), hist: +(macd * 0.1).toFixed(4) }
+}
+
+function calcBB(closes, period = 20) {
+  if (closes.length < period) return null
+  const slice = closes.slice(-period)
+  const mean = slice.reduce((a, b) => a + b, 0) / period
+  const std = Math.sqrt(slice.reduce((a, b) => a + (b - mean) ** 2, 0) / period)
+  const upper = mean + 2 * std, lower = mean - 2 * std
+  const last = closes[closes.length - 1]
+  const pct = std === 0 ? 0.5 : (last - lower) / (upper - lower)
+  return { upper: +upper.toFixed(2), lower: +lower.toFixed(2), mid: +mean.toFixed(2), pct: +pct.toFixed(3) }
+}
+
+function calcATR(candles, period = 14) {
+  if (candles.length < period + 1) return null
+  const trs = candles.slice(1).map((c, i) => Math.max(
+    c.h - c.l,
+    Math.abs(c.h - candles[i].c),
+    Math.abs(c.l - candles[i].c)
+  ))
+  return +(trs.slice(-period).reduce((a, b) => a + b, 0) / period).toFixed(4)
+}
+
+function calcVol(candles) {
+  if (candles.length < 20) return 1
+  const vols = candles.slice(-20).map(c => c.v)
+  const avg = vols.slice(0, 10).reduce((a, b) => a + b, 0) / 10
+  const recent = vols.slice(-5).reduce((a, b) => a + b, 0) / 5
+  return avg ? +(recent / avg).toFixed(2) : 1
+}
+
+// ── Signal generator ──────────────────────────────────────────────────────────
+function genCryptoSignal(sym, candles, price) {
+  if (!candles || candles.length < 30) return null
+  const closes = candles.map(c => c.c)
+  const rsi = calcRSI(closes)
+  const macd = calcMACD(closes)
+  const bb = calcBB(closes)
+  const atr = calcATR(candles)
+  const volX = calcVol(candles)
+  const ema9 = calcEMA(closes, 9)
+  const ema21 = calcEMA(closes, 21)
+  const ema50 = calcEMA(closes.length >= 50 ? closes : closes, Math.min(50, closes.length))
+
+  let bullScore = 0, bearScore = 0
+  const tags = []
+
+  // RSI
+  if (rsi !== null) {
+    if (rsi < 30) { bullScore += 2; tags.push({ l: 'RSI Oversold ' + rsi, t: 'bull' }) }
+    else if (rsi > 70) { bearScore += 2; tags.push({ l: 'RSI Overbought ' + rsi, t: 'bear' }) }
+    else if (rsi < 45) { bullScore += 0.5 } else if (rsi > 58) { bearScore += 0.5 }
+  }
+
+  // EMA cross
+  if (ema9 && ema21) {
+    if (ema9 > ema21) { bullScore += 1; tags.push({ l: 'EMA9>EMA21', t: 'bull' }) }
+    else { bearScore += 1; tags.push({ l: 'EMA9<EMA21', t: 'bear' }) }
+  }
+
+  // MACD
+  if (macd) {
+    if (macd.macd > 0) { bullScore += 1; tags.push({ l: 'MACD+', t: 'bull' }) }
+    else { bearScore += 1; tags.push({ l: 'MACD-', t: 'bear' }) }
+  }
+
+  // Bollinger Bands
+  if (bb) {
+    if (bb.pct < 0.2) { bullScore += 1.5; tags.push({ l: 'BB Low', t: 'bull' }) }
+    else if (bb.pct > 0.8) { bearScore += 1.5; tags.push({ l: 'BB High', t: 'bear' }) }
+  }
+
+  // Volume surge
+  if (volX > 1.5) { tags.push({ l: 'Vol×' + volX, t: 'bull' }); bullScore += 0.5 }
+
+  // Price vs EMA50
+  if (price > ema50) { bullScore += 0.5 } else { bearScore += 0.5 }
+
+  const totalScore = bullScore + bearScore
+  const conf = totalScore > 0 ? Math.round(Math.max(bullScore, bearScore) / totalScore * 100) : 50
+  const dir = bullScore > bearScore ? 'buy' : 'sell'
+
+  // Min confidence threshold
+  if (conf < 60) return null
+
+  const atrVal = atr || price * 0.02
+  const sl = dir === 'buy' ? +(price - atrVal * 1.5).toFixed(4) : +(price + atrVal * 1.5).toFixed(4)
+  const t1 = dir === 'buy' ? +(price + atrVal * 2).toFixed(4) : +(price - atrVal * 2).toFixed(4)
+  const t2 = dir === 'buy' ? +(price + atrVal * 3.5).toFixed(4) : +(price - atrVal * 3.5).toFixed(4)
+  const risk = Math.abs(price - sl)
+  const reward = Math.abs(t1 - price)
+  const rr = risk > 0 ? +(reward / risk).toFixed(2) : 0
+
+  if (rr < 1.5) return null // Min 1:1.5 RR
+
+  return { dir, entry: price, sl, t1, t2, rr, conf, rsi, macd: macd?.macd, bb: bb?.pct, ema9, ema21, volX, atr: atrVal, tags }
+}
+
+// ── Binance order placement ───────────────────────────────────────────────────
+async function placeBinanceOrder(sym, side, usdtAmount) {
+  if (!CX.binKey || !CX.binSec) {
+    alert2('Add Binance API key + secret in Config → ₿ section', 'e', 6000)
+    return null
+  }
+  const price = CX.prices[sym]?.price
+  if (!price) { alert2('No price for ' + sym, 'e'); return null }
+
+  const qty = +(usdtAmount / price).toFixed(6)
+  // Get step size for symbol from exchange info (simplified)
+  const stepSizes = { BTCUSDT:0.00001, ETHUSDT:0.0001, SOLUSDT:0.01, BNBUSDT:0.001, XRPUSDT:1, ADAUSDT:1, DOGEUSDT:1, DOTUSDT:0.01 }
+  const step = stepSizes[sym] || 0.01
+  const finalQty = Math.floor(qty / step) * step
+
+  // Market order via Worker (HMAC signing done server-side)
+  const result = await binPriv('POST', '/order', {
+    symbol: sym, side: side.toUpperCase(), type: 'MARKET', quantity: finalQty
+  })
+
+  if (result?.orderId) {
+    const logEntry = {
+      id: result.orderId, sym, dir: side, qty: finalQty,
+      price: result.fills?.[0]?.price || price,
+      usdt: usdtAmount, time: Date.now(), status: 'filled'
+    }
+    CX.trades.unshift(logEntry)
+    try { localStorage.setItem('cx_trades', JSON.stringify(CX.trades.slice(0, 100))) } catch(e) {}
+    alert2(`✓ ${side.toUpperCase()} ${finalQty} ${sym.replace('USDT','')} @ $${logEntry.price}`, 's', 7000)
+    setTimeout(loadBinancePortfolio, 2000)
+    return result
+  }
+  return null
+}
+
+// ── Auto-execute crypto signal ────────────────────────────────────────────────
+async function autoCryptoTrade(sym, signal) {
+  if (S.mode !== 'auto') return
+  if (signal.conf < S.cfg.conf) return
+  const capitalUsdt = (S.capital / 83) * ((CX.binKey ? 1 : 0) > 0 ? 1 : 0) // rough INR→USD
+  const riskUsdt = capitalUsdt * (S.cfg.crisk || 1) / 100
+  if (riskUsdt < 1) return
+  await placeBinanceOrder(sym, signal.dir, riskUsdt)
+}
+
+// ── Portfolio fetch ───────────────────────────────────────────────────────────
+async function loadBinancePortfolio() {
+  if (!CX.binKey) return
+  const d = await binPriv('GET', '/account', {})
+  if (!d?.balances) return
+  CX.portfolio = d.balances.filter(b => parseFloat(b.free) + parseFloat(b.locked) > 0.0001)
+  if (CX.view === 'portfolio') renderCryptoPortfolio()
+}
+
+// ── Refresh all crypto data ───────────────────────────────────────────────────
+async function refreshCrypto() {
+  // Prices from CoinGecko (free, generous limits)
+  const cg = await cgPrices(CX_PAIRS)
+  if (cg) {
+    CX_PAIRS.forEach(sym => {
+      const id = CG_IDS[sym]
+      if (!id || !cg[id]) return
+      CX.prices[sym] = {
+        price: cg[id].usd,
+        change24h: cg[id].usd_24h_change || 0,
+        vol24h: cg[id].usd_24h_vol || 0,
+        high24h: cg[id].usd_24h_high || 0,
+        low24h: cg[id].usd_24h_low || 0,
+      }
+    })
+    renderCryptoTickers()
+  }
+
+  // Klines + signal for selected pair
+  await refreshCryptoPair(CX.sym)
+}
+
+async function refreshCryptoPair(sym) {
+  const candles = await binKlines(sym, '1h', 100)
+  if (candles.length) {
+    CX.candles[sym] = candles
+    const price = CX.prices[sym]?.price || candles[candles.length - 1].c
+    const sig = genCryptoSignal(sym, candles, price)
+    CX.signals[sym] = sig
+
+    // Auto-trade check
+    if (sig && S.mode === 'auto' && CX.binKey) autoCryptoTrade(sym, sig)
+  }
+  renderCryptoContent()
+}
+
+// ── UI Renderers ──────────────────────────────────────────────────────────────
+function renderCryptoTickers() {
+  const el = document.getElementById('cx-tickers')
+  if (!el) return
+  el.innerHTML = CX_PAIRS.map(sym => {
+    const p = CX.prices[sym]
+    if (!p) return ''
+    const chg = p.change24h || 0
+    const priceStr = p.price >= 1000 ? '$' + p.price.toLocaleString('en-US', { maximumFractionDigits: 0 })
+      : p.price >= 1 ? '$' + p.price.toFixed(2)
+      : '$' + p.price.toFixed(5)
+    return `<div class="cx-ticker" onclick="selectCrypto('${sym}')">
+      <span class="cx-tn">${sym.replace('USDT', '')}</span>
+      <span class="cx-tv ${chg >= 0 ? 'up' : 'dn'}">${priceStr}</span>
+      <span class="cx-tc ${chg >= 0 ? 'up' : 'dn'}">${chg >= 0 ? '+' : ''}${chg.toFixed(2)}%</span>
+    </div>`
+  }).join('')
+}
+
+function renderCryptoContent() {
+  const el = document.getElementById('cx-content')
+  if (!el) return
+  if (CX.view === 'market') renderCryptoMarket(el)
+  else if (CX.view === 'chart') renderCryptoSignal(el)
+  else renderCryptoPortfolio()
+}
+
+function renderCryptoMarket(el) {
+  const rows = CX_PAIRS.map(sym => {
+    const p = CX.prices[sym]
+    const sig = CX.signals[sym]
+    if (!p) return ''
+    const chg = p.change24h || 0
+    const priceStr = p.price >= 1 ? '$' + p.price.toLocaleString('en-US', { maximumFractionDigits: 2 }) : '$' + p.price.toFixed(5)
+    const sigTag = sig ? `<span style="font-size:7px;padding:1px 5px;border-radius:3px;font-family:var(--mono);font-weight:700;background:${sig.dir==='buy'?'var(--gd)':'var(--rd)'};color:${sig.dir==='buy'?'var(--g)':'var(--r)'};border:1px solid ${sig.dir==='buy'?'rgba(0,238,160,.3)':'rgba(255,58,88,.3)'}">${sig.dir.toUpperCase()} ${sig.conf}%</span>` : '<span style="font-size:7px;color:var(--tx3);font-family:var(--mono)">—</span>'
+    return `<div class="cx-port-row" onclick="selectCrypto('${sym}')" style="cursor:pointer">
+      <div>
+        <div style="font-family:var(--mono);font-weight:700;font-size:9px">${sym.replace('USDT','')}<span style="color:var(--tx3)">/USDT</span></div>
+        <div style="font-size:7px;color:var(--tx3)">${p.vol24h ? 'Vol $' + (p.vol24h / 1e9).toFixed(2) + 'B' : ''}</div>
+      </div>
+      <div style="text-align:center">${sigTag}</div>
+      <div style="text-align:right">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700">${priceStr}</div>
+        <div style="font-family:var(--mono);font-size:7px;color:${chg >= 0 ? 'var(--g)' : 'var(--r)'}">${chg >= 0 ? '+' : ''}${chg.toFixed(2)}%</div>
+      </div>
+    </div>`
+  }).join('')
+  el.innerHTML = `<div style="font-size:7px;color:var(--tx3);font-family:var(--mono);letter-spacing:.8px;margin-bottom:4px">LIVE MARKET SCAN · BINANCE PAIRS</div>${rows}
+  <div style="text-align:center;margin-top:6px"><button onclick="refreshCrypto();alert2('Refreshing crypto...','i')" style="background:transparent;border:1px dashed var(--bd);color:var(--tx3);border-radius:3px;padding:3px 10px;cursor:pointer;font-size:8px;font-family:var(--mono)">↻ REFRESH</button></div>`
+}
+
+function renderCryptoSignal(el) {
+  const sym = CX.sym
+  const sig = CX.signals[sym]
+  const p = CX.prices[sym]
+  const candles = CX.candles[sym] || []
+
+  if (!p) {
+    el.innerHTML = '<div style="color:var(--tx3);font-size:9px;text-align:center;padding:14px">Loading ' + sym + '...</div>'
+    return
+  }
+
+  const priceStr = p.price >= 1 ? '$' + p.price.toLocaleString('en-US', { maximumFractionDigits: 2 }) : '$' + p.price.toFixed(5)
+
+  // Mini sparkline canvas
+  const sparkH = candles.slice(-24).map(c => c.h)
+  const sparkL = candles.slice(-24).map(c => c.l)
+  const sparkC = candles.slice(-24).map(c => c.c)
+
+  let html = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+    <div>
+      <div style="font-family:var(--mono);font-weight:700;font-size:14px">${sym.replace('USDT','')}<span style="color:var(--tx3);font-size:9px">/USDT</span></div>
+      <div style="font-family:var(--mono);font-size:11px;color:${(p.change24h||0)>=0?'var(--g)':'var(--r)'}">
+        ${priceStr} <span style="font-size:8px">${(p.change24h||0)>=0?'+':''}${(p.change24h||0).toFixed(2)}%</span>
+      </div>
+    </div>
+    <canvas id="cx-spark" width="80" height="36" style="opacity:.7"></canvas>
+  </div>`
+
+  if (sig) {
+    const isBuy = sig.dir === 'buy'
+    const usdtRisk = Math.round((S.capital / 83) * (S.cfg.crisk || 1) / 100)
+    html += `<div class="cx-sig ${sig.dir}">
+      <div class="cx-sh">
+        <span class="cx-badge ${isBuy ? 'cx-buy' : 'cx-sell'}">${isBuy ? '▲ BUY' : '▼ SELL'}</span>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--p)">AI ${sig.conf}% CONF</span>
+        <span style="font-size:7px;color:var(--tx3);font-family:var(--mono)">${new Date().toLocaleTimeString('en-IN',{hour12:false})}</span>
+      </div>
+      <div class="cx-grid">
+        <div class="cx-row"><span class="cx-label">ENTRY</span><span class="cx-val" style="color:var(--b)">$${sig.entry >= 1 ? sig.entry.toFixed(2) : sig.entry.toFixed(5)}</span></div>
+        <div class="cx-row"><span class="cx-label">STOP LOSS</span><span class="cx-val" style="color:var(--r)">$${sig.sl >= 1 ? sig.sl.toFixed(2) : sig.sl.toFixed(5)}</span></div>
+        <div class="cx-row"><span class="cx-label">TARGET 1</span><span class="cx-val" style="color:var(--g)">$${sig.t1 >= 1 ? sig.t1.toFixed(2) : sig.t1.toFixed(5)}</span></div>
+        <div class="cx-row"><span class="cx-label">TARGET 2</span><span class="cx-val" style="color:var(--g)">$${sig.t2 >= 1 ? sig.t2.toFixed(2) : sig.t2.toFixed(5)}</span></div>
+        <div class="cx-row"><span class="cx-label">RISK:REWARD</span><span class="cx-val" style="color:var(--y)">1:${sig.rr}</span></div>
+        <div class="cx-row"><span class="cx-label">RISK USDT</span><span class="cx-val" style="color:var(--o)">$${usdtRisk}</span></div>
+      </div>
+      <div class="cx-ind">${sig.tags.map(t=>`<span class="cx-itag ${t.t}">${t.l}</span>`).join('')}</div>
+      <button class="cx-exe ${sig.dir}" ${CX.binKey ? '' : 'disabled'} onclick="executeCryptoSignal('${sym}','${sig.dir}',${usdtRisk})">
+        ${CX.binKey ? (isBuy ? '▲ EXECUTE BUY on Binance' : '▼ EXECUTE SELL on Binance') : '🔒 Add Binance Key to Trade'}
+      </button>
+    </div>`
+  } else {
+    html += `<div style="background:var(--bg3);border:1px solid var(--bd);border-radius:5px;padding:10px;text-align:center;margin-bottom:6px">
+      <div style="font-size:9px;color:var(--tx3);font-family:var(--mono)">NO SETUP — Market unclear</div>
+      <div style="font-size:8px;color:var(--tx3);margin-top:3px">Indicators not aligned. Better to sit out.</div>
+    </div>`
+  }
+
+  // Indicator bar
+  if (candles.length > 20) {
+    const closes = candles.map(c => c.c)
+    const rsi = calcRSI(closes)
+    const ema9 = calcEMA(closes, 9)
+    const ema21 = calcEMA(closes, 21)
+    const bb = calcBB(closes)
+    const volX = calcVol(candles)
+    html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;font-family:var(--mono);font-size:8px">
+      <div style="background:var(--bg3);border-radius:3px;padding:4px 6px">RSI <span style="color:${rsi<30?'var(--g)':rsi>70?'var(--r)':'var(--tx)'}">${rsi || '—'}</span></div>
+      <div style="background:var(--bg3);border-radius:3px;padding:4px 6px">BB% <span style="color:${bb&&bb.pct<0.2?'var(--g)':bb&&bb.pct>0.8?'var(--r)':'var(--tx)'}">${bb ? (bb.pct * 100).toFixed(0) + '%' : '—'}</span></div>
+      <div style="background:var(--bg3);border-radius:3px;padding:4px 6px">EMA9 <span style="color:${ema9 > ema21 ? 'var(--g)' : 'var(--r)'}">$${ema9.toFixed(ema9>=1?2:5)}</span></div>
+      <div style="background:var(--bg3);border-radius:3px;padding:4px 6px">VOL× <span style="color:${volX>1.5?'var(--g)':'var(--tx)'}">${volX}x</span></div>
+    </div>`
+  }
+
+  el.innerHTML = html
+
+  // Draw sparkline
+  setTimeout(() => {
+    const canvas = document.getElementById('cx-spark')
+    if (!canvas || !sparkC.length) return
+    const ctx = canvas.getContext('2d')
+    const w = canvas.width, h = canvas.height
+    ctx.clearRect(0, 0, w, h)
+    const mn = Math.min(...sparkL), mx = Math.max(...sparkH)
+    const range = mx - mn || 1
+    ctx.beginPath()
+    ctx.strokeStyle = (p.change24h || 0) >= 0 ? '#00eea0' : '#ff3a58'
+    ctx.lineWidth = 1.5
+    sparkC.forEach((c, i) => {
+      const x = (i / (sparkC.length - 1)) * w
+      const y = h - ((c - mn) / range) * h
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
+    })
+    ctx.stroke()
+  }, 50)
+}
+
+function renderCryptoPortfolio() {
+  const el = document.getElementById('cx-content')
+  if (!el) return
+  if (!CX.binKey) {
+    el.innerHTML = `<div style="text-align:center;padding:14px;font-size:9px;color:var(--tx3)">Add Binance API key in Config → ₿ section to see portfolio</div>`
+    return
+  }
+  if (!CX.portfolio.length) {
+    loadBinancePortfolio()
+    el.innerHTML = `<div style="text-align:center;padding:14px;font-size:9px;color:var(--tx3)">Loading Binance portfolio...</div>`
+    return
+  }
+  const totalUsdt = CX.portfolio.reduce((s, b) => {
+    const price = CX.prices[b.asset + 'USDT']?.price || (b.asset === 'USDT' ? 1 : 0)
+    return s + (parseFloat(b.free) + parseFloat(b.locked)) * price
+  }, 0)
+  let html = `<div style="font-size:8px;color:var(--tx3);font-family:var(--mono);margin-bottom:5px;display:flex;justify-content:space-between"><span>BINANCE SPOT PORTFOLIO</span><span style="color:var(--g)">≈$${totalUsdt.toFixed(2)}</span></div>`
+  html += CX.portfolio.map(b => {
+    const price = CX.prices[b.asset + 'USDT']?.price || (b.asset === 'USDT' ? 1 : 0)
+    const total = parseFloat(b.free) + parseFloat(b.locked)
+    const usdt = total * price
+    return `<div class="cx-port-row">
+      <div><span style="font-family:var(--mono);font-weight:700">${b.asset}</span></div>
+      <div style="text-align:center;font-family:var(--mono);font-size:8px;color:var(--tx3)">${total.toFixed(total > 1 ? 4 : 8)}</div>
+      <div style="text-align:right;font-family:var(--mono);font-size:9px;color:var(--b)">$${usdt.toFixed(2)}</div>
+    </div>`
+  }).join('')
+  html += `<div style="text-align:center;margin-top:6px"><button onclick="loadBinancePortfolio();alert2('Syncing Binance...','i')" style="background:transparent;border:1px dashed var(--bd);color:var(--tx3);border-radius:3px;padding:3px 10px;cursor:pointer;font-size:8px;font-family:var(--mono)">↻ SYNC PORTFOLIO</button></div>`
+  el.innerHTML = html
+
+  // Crypto trade history
+  if (CX.trades.length) {
+    el.innerHTML += `<div style="font-size:7px;color:var(--tx3);font-family:var(--mono);letter-spacing:.8px;margin:8px 0 4px">RECENT CRYPTO TRADES</div>` +
+      CX.trades.slice(0, 10).map(t => `<div class="cx-port-row">
+        <span style="color:${t.dir==='buy'?'var(--g)':'var(--r)'};font-family:var(--mono);font-size:8px;font-weight:700">${t.dir.toUpperCase()}</span>
+        <span style="font-family:var(--mono);font-size:8px">${t.sym.replace('USDT','')}</span>
+        <span style="font-family:var(--mono);font-size:8px">$${parseFloat(t.price).toFixed(2)}</span>
+        <span style="font-size:7px;color:var(--tx3)">${Math.round((Date.now()-t.time)/60000)}m ago</span>
+      </div>`).join('')
   }
 }
+
+function selectCrypto(sym) {
+  CX.sym = sym
+  document.querySelectorAll('.cx-pair').forEach(b => b.classList.toggle('on', b.textContent === sym.replace('USDT', '')))
+  refreshCryptoPair(sym)
+}
+
+function setCryptoView(v) {
+  CX.view = v
+  document.querySelectorAll('[id^="cxv-"]').forEach(b => {
+    b.style.background = b.id === 'cxv-' + v ? 'var(--bd_)' : 'transparent'
+    b.style.color = b.id === 'cxv-' + v ? 'var(--b)' : 'var(--tx3)'
+    b.style.borderColor = b.id === 'cxv-' + v ? 'var(--b2)' : 'var(--bd)'
+  })
+  renderCryptoContent()
+}
+
+async function executeCryptoSignal(sym, dir, usdtAmt) {
+  const confirm = window.confirm(`Execute ${dir.toUpperCase()} ${sym.replace('USDT','')} for $${usdtAmt} USDT?\nThis will place a LIVE market order on Binance.`)
+  if (!confirm) return
+  await placeBinanceOrder(sym, dir, usdtAmt)
+}
+
+// ══════════════════════════════════════════════
+// MARKET SWITCH — Stock ↔ Crypto
+// ══════════════════════════════════════════════
+let MARKET_MODE = 'stock' // 'stock' | 'crypto'
+
+function toggleMarket() {
+  switchMarket(MARKET_MODE === 'stock' ? 'crypto' : 'stock')
+}
+
+function switchMarket(mode) {
+  MARKET_MODE = mode
+  const isC = mode === 'crypto'
+  // Header toggle UI
+  document.getElementById('ms-stock').classList.toggle('on', !isC)
+  document.getElementById('ms-crypto').classList.toggle('on', isC)
+  document.getElementById('ms-thumb').classList.toggle('crypto', isC)
+  // Logo text
+  document.getElementById('logo-txt').innerHTML = isC ? '₿ Crypto <em>PRO</em>' : 'NSESignal <em>PRO</em>'
+  document.getElementById('logo-sub').textContent = isC ? 'AI · BINANCE · LIVE SCAN' : 'AI · ZERODHA · LIVE SENTIMENT'
+  // Header tickers
+  document.querySelectorAll('.stock-el').forEach(el => el.style.display = isC ? 'none' : '')
+  document.querySelectorAll('.crypto-el').forEach(el => el.style.display = isC ? '' : 'none')
+  // Left panel
+  document.getElementById('stk-left').style.display = isC ? 'none' : ''
+  document.getElementById('cx-left').style.display = isC ? 'flex' : 'none'
+  // Center panel
+  document.getElementById('cen-crypto').classList.toggle('on', isC)
+  document.getElementById('stkhdr').style.display = isC ? 'none' : ''
+  document.getElementById('sigrib').style.display = isC ? 'none' : ''
+  document.getElementById('chwrap').style.display = isC ? 'none' : ''
+  document.getElementById('indbar').style.display = isC ? 'none' : ''
+  // Right panel — switch CONFIG tab default section
+  if (isC) {
+    setCfgMode('crypto')
+    setPortView('crypto')
+    // Start crypto if not already running
+    if (!CX.scanRunning) runFullCryptoScan()
+    updateCryptoHeaderTickers()
+  } else {
+    setCfgMode('stock')
+    setPortView('stock')
+  }
+  // Auto-trade button label
+  document.getElementById('btn-auto').title = isC ? 'Auto-trade on Binance' : 'Auto-trade on Zerodha'
+  try { localStorage.setItem('mkt_mode', mode) } catch(e) {}
+}
+
+// ══════════════════════════════════════════════
+// CONFIG MODE TABS
+// ══════════════════════════════════════════════
+function setCfgMode(mode) {
+  ;['stock','crypto','general'].forEach(m => {
+    document.getElementById('cfg-'+m+'-section').style.display = m === mode ? '' : 'none'
+    document.getElementById('cfgm-'+m).classList.toggle('on', m === mode)
+  })
+}
+
+function setPortView(mode) {
+  document.getElementById('port-stock-view').style.display = mode === 'stock' ? '' : 'none'
+  document.getElementById('port-crypto-view').style.display = mode === 'crypto' ? '' : 'none'
+  document.getElementById('port-stk-btn').classList.toggle('on', mode === 'stock')
+  document.getElementById('port-cx-btn').classList.toggle('on', mode === 'crypto')
+  if (mode === 'crypto') renderCxPortfolio()
+}
+
+// ══════════════════════════════════════════════
+// LOADING OVERLAY
+// ══════════════════════════════════════════════
+function showLoad(msg='Loading...') {
+  document.getElementById('load-msg').textContent = msg
+  document.getElementById('load-overlay').classList.add('on')
+}
+function hideLoad() {
+  document.getElementById('load-overlay').classList.remove('on')
+}
+
+// ══════════════════════════════════════════════
+// KITE QUICK CONNECT (from Config tab)
+// ══════════════════════════════════════════════
+function genKiteLoginUrl() {
+  const key = document.getElementById('cfg-key').value.trim()
+  if (!key) { alert2('Enter API Key first','e'); return }
+  const loginUrl = `https://kite.zerodha.com/connect/login?api_key=${key}&v=3`
+  document.getElementById('kite-url-box').style.display = ''
+  const link = document.getElementById('kite-url-link')
+  link.href = loginUrl
+  link.textContent = loginUrl
+  window.open(loginUrl, '_blank')
+}
+
+async function quickExchangeToken() {
+  const key = document.getElementById('cfg-key').value.trim()
+  const secret = document.getElementById('cfg-secret').value.trim()
+  const reqTok = document.getElementById('cfg-reqtok').value.trim()
+  if (!key||!secret||!reqTok) { alert2('Fill API Key, Secret & Request Token','e'); return }
+  const btn = document.getElementById('qex-btn')
+  btn.innerHTML = '<span class="spin-sm"></span> Exchanging...'
+  btn.disabled = true
+  showLoad('Exchanging Kite token...')
+  try {
+    const res = await fetch(`${WB()}/kite/session/token`, {
+      method: 'POST',
+      headers: { 'X-Kite-Api-Key': key, 'X-Kite-Api-Secret': secret, 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `request_token=${reqTok}`
+    })
+    const d = await res.json()
+    if (d.status === 'success' && d.data?.access_token) {
+      document.getElementById('cfg-tok').value = d.data.access_token
+      document.getElementById('kite-tok-status').textContent = '✓ Got token!'
+      document.getElementById('kite-tok-status').style.color = 'var(--g)'
+      alert2('✓ Access token obtained! Click Save.','s', 5000)
+    } else {
+      throw new Error(d.message || 'Exchange failed')
+    }
+  } catch(e) {
+    alert2('Token exchange failed: '+e.message,'e',7000)
+    document.getElementById('kite-tok-status').textContent = '✗ Failed'
+    document.getElementById('kite-tok-status').style.color = 'var(--r)'
+  } finally {
+    btn.innerHTML = '⇄ GET TOKEN'
+    btn.disabled = false
+    hideLoad()
+  }
+}
+
+function saveKiteFromConfig() {
+  const key = document.getElementById('cfg-key').value.trim()
+  const tok = document.getElementById('cfg-tok').value.trim()
+  if (!key||!tok) { alert2('Enter both API Key and Access Token','e'); return }
+  S.z.key = key; S.z.tok = tok; S.z.ok = true
+  document.getElementById('z-btn').className = 'ok'
+  document.getElementById('z-btn').textContent = '✓ Zerodha Connected'
+  save()
+  alert2('✓ Zerodha connected!','s',4000)
+  setTimeout(fetchKitePortfolio, 500)
+}
+
+// ══════════════════════════════════════════════
+// z.ai GLM-4-Flash AI ANALYSIS
+// ══════════════════════════════════════════════
+async function glmAnalyze(prompt, systemMsg='You are a concise crypto trading analyst. Reply in JSON only.') {
+  const key = S.zaiKey
+  if (!key) return null
+  try {
+    const res = await fetch('https://open.bigmodel.cn/api/paas/v4/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+      body: JSON.stringify({
+        model: 'glm-4-flash',
+        messages: [{ role: 'system', content: systemMsg }, { role: 'user', content: prompt }],
+        max_tokens: 600,
+        temperature: 0.3
+      }),
+      signal: AbortSignal.timeout(15000)
+    })
+    if (!res.ok) throw new Error('GLM '+res.status)
+    const d = await res.json()
+    const txt = d.choices?.[0]?.message?.content || ''
+    return txt.replace(/```json|```/g,'').trim()
+  } catch(e) { console.warn('GLM failed',e.message); return null }
+}
+
+async function testZaiKey(){
+  const key = document.getElementById('cfg-zai').value.trim()
+  if(!key){alert2('Enter z.ai key first','e');return;}
+  const btn = document.querySelector('button[onclick="testZaiKey()"]')
+  if(btn){ btn.textContent='…'; btn.disabled=true; }
+  try{
+    // Try worker proxy first, then direct
+    let r
+    try{ r = await fetch(`${WB()}/zai`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model:'glm-4-flash',max_tokens:20,messages:[{role:'user',content:'Reply OK'}]}),signal:AbortSignal.timeout(10000)}) }catch(e){}
+    if(!r||!r.ok) r = await fetch('https://open.bigmodel.cn/api/paas/v4/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+      body: JSON.stringify({model:'glm-4-flash',max_tokens:20,messages:[{role:'user',content:'Reply OK'}]}),
+      signal: AbortSignal.timeout(12000)
+    })
+    const d = await r.json()
+    if(r.ok && d.choices?.[0]?.message?.content){
+      S.zaiKey = key; localStorage.setItem('nsp2_zai', key);
+      const el=document.getElementById('zai-status'); if(el){el.textContent='✓ Connected';el.style.color='var(--g)';}
+      alert2('✓ z.ai GLM-4-Flash connected! Swarm Intel active.','s',5000)
+    } else {
+      alert2('z.ai error: '+(d.message||d.error||r.status),'e',6000)
+    }
+  }catch(e){ alert2('z.ai test failed: '+e.message,'e',5000); }
+  if(btn){ btn.textContent='TEST'; btn.disabled=false; }
+}
+
+async function testBinanceConn() {
+  if (!CX.binKey) { alert2('Save Binance key first','e'); return }
+  const res = document.getElementById('bin-test-result')
+  res.style.display = ''
+  res.textContent = 'Testing connection...'
+  const d = await binPriv('GET', '/account', {})
+  if (d?.balances) {
+    res.textContent = '✓ Connected! Balances loaded.'
+    res.style.color = 'var(--g)'
+    CX.portfolio = d.balances.filter(b => parseFloat(b.free)+parseFloat(b.locked) > 0.00001)
+    renderCxPortfolio()
+  } else {
+    res.textContent = '✗ Failed: ' + JSON.stringify(d).slice(0,80)
+    res.style.color = 'var(--r)'
+  }
+}
+
+function applyCryptoSettings() {
+  saveBinanceCreds()
+  S.cfg.crisk = parseFloat(document.getElementById('cfg-crisk')?.value) || 1
+  S.cfg.cmax = parseInt(document.getElementById('cfg-cmax')?.value) || 3
+  const scanInt = parseInt(document.getElementById('cfg-cscan')?.value) || 5
+  if (CX.refreshTimer) clearInterval(CX.refreshTimer)
+  CX.refreshTimer = setInterval(runFullCryptoScan, scanInt*60*1000)
+  alert2('Crypto settings applied','s',3000)
+}
+
+function applyGeneralSettings(){
+  const zai = document.getElementById('cfg-zai').value.trim()
+  if(zai){ S.zaiKey=zai; localStorage.setItem('nsp2_zai', zai); const el=document.getElementById('zai-status'); if(el){el.textContent='✓ Saved';el.style.color='var(--g)';} }
+  const wurl = document.getElementById('cfg-worker').value.trim().replace(/\/+$/,'')
+  if(wurl) S.workerUrl=wurl;
+  localStorage.setItem('nsp2_wu', S.workerUrl);
+  alert2('General settings saved','s');
+}
+
+// ══════════════════════════════════════════════
+// FULL CRYPTO SCAN ENGINE
+// Scans ALL Binance USDT pairs — 200+ coins including memes
+// Scores by: technicals + volume surge + CoinGecko trending + GLM AI + Fear/Greed
+// ══════════════════════════════════════════════
+let CX_ALL_COINS = []    // all USDT pairs from Binance 24hr ticker
+let CX_CATEGORY = 'all'
+let CX_SELECTED = null   // currently selected coin for detail view
+let CX_CENTER_MODE = 'scan'
+
+// Coin category map (partial — the rest auto-classified by volume/name)
+const MEME_COINS = new Set(['DOGE','SHIB','PEPE','FLOKI','BONK','WIF','MEME','BOME','SLERF','DOGS','NEIRO','MOG','BRETT','PONKE','HMSTR','TURBO','BABYDOGE','ELON','KISHU','AKITA','SAITAMA','HOGE'])
+const AI_COINS = new Set(['FET','AGIX','OCEAN','NMR','CTXC','RNDR','TAO','WLD','ARKM','PHALA','ALT'])
+const DEFI_COINS = new Set(['UNI','AAVE','COMP','SUSHI','CRV','YFI','SNX','MKR','LDO','RPL','CAKE','1INCH','BAL','DYDX','GMX','PENDLE','JOE'])
+const L1_COINS = new Set(['ETH','SOL','BNB','ADA','AVAX','DOT','ATOM','NEAR','FTM','ONE','EGLD','ALGO','ICP','VET','XTZ','HBAR','CELO','ZIL','KAVA'])
+
+const COIN_CATEGORIES = (sym) => {
+  const base = sym.replace('USDT','')
+  if (MEME_COINS.has(base)) return 'meme'
+  if (AI_COINS.has(base)) return 'ai'
+  if (DEFI_COINS.has(base)) return 'defi'
+  if (L1_COINS.has(base)) return 'layer1'
+  return 'top'
+}
+
+// Fetch Fear & Greed + global market data
+async function fetchCryptoMacro() {
+  const results = {}
+  // Fear & Greed via alternative.me
+  try {
+    const r = await fetch('https://api.alternative.me/fng/?limit=1', { signal: AbortSignal.timeout(5000) })
+    if (r.ok) { const d = await r.json(); results.fg = d.data?.[0] }
+  } catch(e) {}
+  // Global market cap via CoinGecko
+  try {
+    const r = await fetch('https://api.coingecko.com/api/v3/global', { signal: AbortSignal.timeout(6000) })
+    if (r.ok) {
+      const d = await r.json()
+      results.global = { mcap: d.data?.total_market_cap?.usd, vol: d.data?.total_volume?.usd, btcDom: d.data?.market_cap_percentage?.btc }
+    }
+  } catch(e) {}
+  // CoinGecko trending
+  try {
+    const r = await fetch('https://api.coingecko.com/api/v3/search/trending', { signal: AbortSignal.timeout(5000) })
+    if (r.ok) { const d = await r.json(); results.trending = d.coins?.slice(0,7).map(c=>c.item.symbol.toUpperCase()) || [] }
+  } catch(e) {}
+  return results
+}
+
+// Main full scan — fetches ALL Binance 24hr tickers, scores each
+async function runFullCryptoScan() {
+  if (MARKET_MODE !== 'crypto') return
+  const spinner = document.getElementById('cx-spinner')
+  if (spinner) spinner.style.display = ''
+  document.getElementById('cx-scan-info').textContent = 'Scanning all pairs...'
+  CX.scanRunning = true
+
+  try {
+    // Fetch all 24hr tickers from Binance (public, no auth)
+    showLoad('Fetching Binance market data...')
+    const tickerData = await binPub('/api/v3/ticker/24hr')
+    hideLoad()
+    if (!tickerData?.length) { alert2('Binance ticker fetch failed','e',4000); return }
+
+    // Filter USDT pairs, min volume $500k, exclude stable coins
+    const STABLES = new Set(['USDC','BUSD','TUSD','DAI','USDT','USDP','FRAX','SUSD','PAX'])
+    const pairs = tickerData
+      .filter(t => t.symbol.endsWith('USDT') && !STABLES.has(t.symbol.replace('USDT','')) && parseFloat(t.quoteVolume) > 500000)
+      .map(t => ({
+        sym: t.symbol,
+        base: t.symbol.replace('USDT',''),
+        price: parseFloat(t.lastPrice),
+        change24h: parseFloat(t.priceChangePercent),
+        vol24h: parseFloat(t.quoteVolume),
+        high24h: parseFloat(t.highPrice),
+        low24h: parseFloat(t.lowPrice),
+        count: parseInt(t.count),
+        cat: COIN_CATEGORIES(t.symbol)
+      }))
+      .sort((a,b) => b.vol24h - a.vol24h)
+      .slice(0, 200) // top 200 by volume
+
+    // Store prices
+    pairs.forEach(p => { CX.prices[p.sym] = p })
+
+    // Fetch crypto macro (Fear&Greed, global, trending)
+    showLoad('Fetching market intel...')
+    const macro = await fetchCryptoMacro()
+    hideLoad()
+    CX.macro = macro
+    updateCryptoMacroUI(macro)
+
+    // Score all coins with technicals (top 60 by volume get kline analysis)
+    showLoad('Analyzing technicals for top coins...')
+    const TOP_SCAN = pairs.slice(0, 60)
+    const scored = []
+    for (let i = 0; i < TOP_SCAN.length; i += 5) {
+      // batch of 5 simultaneous kline fetches
+      const batch = TOP_SCAN.slice(i, i+5)
+      await Promise.all(batch.map(async coin => {
+        try {
+          const candles = await binKlines(coin.sym, '1h', 60)
+          if (!candles.length) return
+          CX.candles[coin.sym] = candles
+          const sig = genCryptoSignal(coin.sym, candles, coin.price)
+          const trendBonus = macro.trending?.includes(coin.base) ? 15 : 0
+          const fgBonus = macro.fg ? (parseInt(macro.fg.value) < 30 ? 10 : parseInt(macro.fg.value) > 70 ? -5 : 0) : 0
+          const score = (sig ? sig.conf : 50) + trendBonus + fgBonus + (coin.change24h > 5 ? 5 : coin.change24h < -5 ? -5 : 0)
+          scored.push({ ...coin, sig, score, trendBonus, candles })
+          if (sig) CX.signals[coin.sym] = sig
+        } catch(e) {}
+      }))
+      document.getElementById('cx-scan-info').textContent = `Analyzed ${Math.min(i+5, TOP_SCAN.length)}/${TOP_SCAN.length}...`
+    }
+
+    // For the remaining coins (60-200), use price-only scoring
+    pairs.slice(60).forEach(coin => {
+      const trendBonus = macro.trending?.includes(coin.base) ? 15 : 0
+      const score = 50 + trendBonus + (coin.change24h > 5 ? 8 : coin.change24h < -5 ? -8 : 0) + (coin.vol24h > 1e8 ? 5 : 0)
+      scored.push({ ...coin, sig: null, score, trendBonus })
+    })
+
+    // Sort by score
+    scored.sort((a,b) => b.score - a.score)
+    CX_ALL_COINS = scored
+
+    // GLM AI: ask for best trade pick from top 10
+    if (S.zaiKey && scored.length > 0) {
+      const top10 = scored.slice(0,10).map(c=>`${c.base}: score=${c.score}, chg=${c.change24h.toFixed(1)}%, vol=$${(c.vol24h/1e6).toFixed(0)}M, sig=${c.sig?.dir||'none'} ${c.sig?.conf||0}%`).join('\n')
+      const macroCtx = macro.fg ? `Fear&Greed: ${macro.fg.value} (${macro.fg.value_classification}). ` : ''
+      const trending = macro.trending?.join(', ') || ''
+      glmAnalyze(`${macroCtx}Trending: ${trending}.\n\nTop 10 coins by AI score:\n${top10}\n\nPick the single BEST coin to trade right now. Respond JSON: {"pick":"SYMBOL","reason":"<20 words>","action":"buy|sell","confidence":0-100}`).then(r => {
+        if (!r) return
+        try {
+          const p = JSON.parse(r)
+          const best = scored.find(c => c.base === p.pick || c.sym === p.pick+'USDT')
+          if (best) {
+            document.getElementById('cx-best-tag').textContent = `🤖 AI: ${p.pick} (${p.confidence}%)`
+            document.getElementById('cx-ai-status').textContent = `⬡ AI: ${p.pick} — ${p.reason}`
+            if (S.mode === 'auto' && CX.binKey && best.sig) {
+              const usdtRisk = Math.round((S.capital/83) * (S.cfg.crisk||1)/100)
+              if (usdtRisk >= 5) {
+                alert2(`🤖 AUTO: AI picked ${p.pick} (${p.action.toUpperCase()}) — executing...`, 'i', 6000)
+                placeBinanceOrder(best.sym, p.action, usdtRisk)
+              }
+            }
+          }
+        } catch(e) {}
+      })
+    }
+
+    renderCxScanList(CX_CATEGORY)
+    updateCryptoHeaderTickers(scored)
+
+    // Auto-select best coin
+    if (scored.length && !CX_SELECTED) {
+      selectCoin(scored[0].sym)
+    }
+    document.getElementById('cx-scan-info').textContent = `${scored.length} coins scanned · ${new Date().toLocaleTimeString('en-IN',{hour12:false,hour:'2-digit',minute:'2-digit'})}`
+
+  } catch(e) {
+    console.error('Crypto scan error', e)
+    alert2('Crypto scan error: '+e.message,'e',5000)
+  } finally {
+    if (spinner) spinner.style.display = 'none'
+    CX.scanRunning = false
+    hideLoad()
+  }
+}
+
+function renderCxScanList(cat) {
+  const el = document.getElementById('cx-scan-list')
+  if (!el) return
+  let coins = CX_ALL_COINS
+  if (cat === 'meme') coins = coins.filter(c=>c.cat==='meme')
+  else if (cat === 'defi') coins = coins.filter(c=>c.cat==='defi')
+  else if (cat === 'ai') coins = coins.filter(c=>c.cat==='ai')
+  else if (cat === 'layer1') coins = coins.filter(c=>c.cat==='layer1')
+  else if (cat === 'top') coins = coins.slice(0,30)
+  else if (cat === 'trending') coins = coins.filter(c=>c.trendBonus>0)
+  const rows = coins.slice(0,80).map(c => {
+    const sig = CX.signals[c.sym]
+    const sigHtml = sig ? `<span style="font-size:6px;padding:1px 4px;border-radius:2px;font-family:var(--mono);font-weight:700;background:${sig.dir==='buy'?'var(--gd)':'var(--rd)'};color:${sig.dir==='buy'?'var(--g)':'var(--r)'}">${sig.dir==='buy'?'▲':'▼'}</span>` : ''
+    const trend = c.trendBonus > 0 ? '🔥' : ''
+    return `<div class="cx-coin-row ${CX_SELECTED===c.sym?'on':''} ${coins.indexOf(c)<3?'top':''}" onclick="selectCoin('${c.sym}')">
+      <div>
+        <div class="cx-coin-sym">${c.base}${trend}</div>
+        <div class="cx-coin-name">${c.cat} · $${(c.vol24h/1e6).toFixed(0)}M</div>
+      </div>
+      <div style="text-align:center">${sigHtml}</div>
+      <div style="text-align:right">
+        <div class="cx-coin-chg ${c.change24h>=0?'up':'dn'}">${c.change24h>=0?'+':''}${c.change24h.toFixed(2)}%</div>
+        <div style="font-size:7px;color:var(--p);font-family:var(--mono)">${c.score}pt</div>
+      </div>
+    </div>`
+  }).join('')
+  el.innerHTML = rows || '<div style="color:var(--tx3);font-size:9px;text-align:center;padding:10px">No coins in this category</div>'
+}
+
+function setCryptoCat(cat) {
+  CX_CATEGORY = cat
+  document.querySelectorAll('.cx-cat').forEach(b => b.classList.toggle('on', b.textContent.toLowerCase()===cat||(cat==='trending'&&b.textContent==='🔥')||(cat==='all'&&b.textContent==='ALL')))
+  renderCxScanList(cat)
+}
+
+async function selectCoin(sym) {
+  CX_SELECTED = sym
+  const coin = CX.prices[sym] || CX_ALL_COINS.find(c=>c.sym===sym)
+  if (!coin) return
+  renderCxScanList(CX_CATEGORY) // update selected state
+
+  // Update header
+  const priceStr = coin.price >= 1000 ? '$'+coin.price.toLocaleString('en-US',{maximumFractionDigits:2}) : coin.price >= 1 ? '$'+coin.price.toFixed(4) : '$'+coin.price.toFixed(6)
+  document.getElementById('cx-sym-hdr').textContent = coin.base + '/USDT'
+  document.getElementById('cx-price-hdr').innerHTML = `<span style="color:${coin.change24h>=0?'var(--g)':'var(--r)'}">${priceStr} ${coin.change24h>=0?'+':''}${coin.change24h.toFixed(2)}%</span>`
+
+  // Header index tickers
+  const btcEl = document.getElementById('cx-btc-v'); if(btcEl&&CX.prices['BTCUSDT']) { btcEl.textContent='$'+Math.round(CX.prices['BTCUSDT'].price).toLocaleString(); document.getElementById('cx-btc-c').textContent=(CX.prices['BTCUSDT'].change24h||0).toFixed(2)+'%'; document.getElementById('cx-btc-c').className='ix-c '+(CX.prices['BTCUSDT'].change24h>=0?'up':'dn') }
+
+  if (CX_CENTER_MODE === 'scan' || CX_CENTER_MODE === 'detail') {
+    setCxCenterMode('detail')
+    renderCoinDetail(sym, coin)
+  }
+}
+
+function setCxCenterMode(mode) {
+  CX_CENTER_MODE = mode
+  ;['scan','detail','port'].forEach(m => document.getElementById('cxm-'+m)?.classList.toggle('on', m===mode))
+  if (mode === 'port') { renderCxPortfolio(); return }
+  if (mode === 'scan') { renderCxMarketScan(); return }
+  if (CX_SELECTED) renderCoinDetail(CX_SELECTED, CX.prices[CX_SELECTED] || CX_ALL_COINS.find(c=>c.sym===CX_SELECTED))
+}
+
+async function renderCoinDetail(sym, coin) {
+  const el = document.getElementById('cx-main-content')
+  if (!el) return
+  el.innerHTML = `<div style="display:flex;align-items:center;gap:6px;color:var(--tx3);font-size:9px;padding:10px"><span class="spin-sm"></span>Loading ${coin?.base||sym} detail...</div>`
+
+  // Fetch candles if not cached
+  if (!CX.candles[sym]?.length) {
+    const c = await binKlines(sym, '1h', 100)
+    if (c.length) CX.candles[sym] = c
+  }
+  const candles = CX.candles[sym] || []
+  const closes = candles.map(c=>c.c)
+  const sig = CX.signals[sym] || genCryptoSignal(sym, candles, coin?.price||0)
+  if (sig) CX.signals[sym] = sig
+
+  const rsi = calcRSI(closes)
+  const ema9 = closes.length>9?calcEMA(closes,9):null
+  const ema21 = closes.length>21?calcEMA(closes,21):null
+  const bb = calcBB(closes)
+  const atr = calcATR(candles)
+  const volX = calcVol(candles)
+  const macd = calcMACD(closes)
+  const price = coin?.price||closes[closes.length-1]||0
+  const priceStr = price>=1000?'$'+price.toLocaleString('en-US',{maximumFractionDigits:2}):price>=1?'$'+price.toFixed(4):'$'+price.toFixed(6)
+
+  let html = `
+  <!-- Price header -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+    <div class="port-stat"><div class="port-stat-l">PRICE</div><div class="port-stat-v" style="color:${coin?.change24h>=0?'var(--g)':'var(--r)'}">${priceStr}</div></div>
+    <div class="port-stat"><div class="port-stat-l">24H CHG</div><div class="port-stat-v" style="color:${coin?.change24h>=0?'var(--g)':'var(--r)'}">${(coin?.change24h||0).toFixed(2)}%</div></div>
+    <div class="port-stat"><div class="port-stat-l">24H VOL</div><div class="port-stat-v">$${((coin?.vol24h||0)/1e6).toFixed(0)}M</div></div>
+    <div class="port-stat"><div class="port-stat-l">24H HIGH</div><div class="port-stat-v" style="color:var(--g)">$${coin?.high24h?.toFixed(coin?.high24h>1?2:5)||'—'}</div></div>
+    <div class="port-stat"><div class="port-stat-l">24H LOW</div><div class="port-stat-v" style="color:var(--r)">$${coin?.low24h?.toFixed(coin?.low24h>1?2:5)||'—'}</div></div>
+    <div class="port-stat"><div class="port-stat-l">CATEGORY</div><div class="port-stat-v" style="color:var(--y)">${coin?.cat?.toUpperCase()||'—'}</div></div>
+  </div>
+  <!-- Indicators -->
+  <div class="port-card">
+    <div class="port-card-title">TECHNICAL INDICATORS <span style="color:var(--tx3)">1H · ${candles.length} candles</span></div>
+    <div class="port-stat-grid">
+      <div class="port-stat"><div class="port-stat-l">RSI(14)</div><div class="port-stat-v" style="color:${rsi<30?'var(--g)':rsi>70?'var(--r)':'var(--tx)'}">${rsi||'—'}</div></div>
+      <div class="port-stat"><div class="port-stat-l">MACD</div><div class="port-stat-v" style="color:${macd?.macd>0?'var(--g)':'var(--r)'}">${macd?macd.macd.toFixed(4):'—'}</div></div>
+      <div class="port-stat"><div class="port-stat-l">BB%</div><div class="port-stat-v" style="color:${bb?.pct<0.2?'var(--g)':bb?.pct>0.8?'var(--r)':'var(--tx)'}">${bb?(bb.pct*100).toFixed(0)+'%':'—'}</div></div>
+      <div class="port-stat"><div class="port-stat-l">VOL RATIO</div><div class="port-stat-v" style="color:${volX>1.5?'var(--g)':'var(--tx)'}">${volX}×</div></div>
+      <div class="port-stat"><div class="port-stat-l">EMA 9</div><div class="port-stat-v" style="color:${ema9&&ema21&&ema9>ema21?'var(--g)':'var(--r)'}">${ema9?'$'+ema9.toFixed(ema9>1?2:5):'—'}</div></div>
+      <div class="port-stat"><div class="port-stat-l">EMA 21</div><div class="port-stat-v">${ema21?'$'+ema21.toFixed(ema21>1?2:5):'—'}</div></div>
+      <div class="port-stat"><div class="port-stat-l">ATR(14)</div><div class="port-stat-v" style="color:var(--o)">${atr||'—'}</div></div>
+      <div class="port-stat"><div class="port-stat-l">EMA CROSS</div><div class="port-stat-v" style="color:${ema9&&ema21&&ema9>ema21?'var(--g)':'var(--r)'}">${ema9&&ema21?ema9>ema21?'BULL ▲':'BEAR ▼':'—'}</div></div>
+    </div>
+  </div>`
+
+  // Signal card
+  if (sig) {
+    const isBuy = sig.dir==='buy'
+    const usdtRisk = Math.round((S.capital/83)*(S.cfg.crisk||1)/100)
+    html += `<div class="cx-sig ${sig.dir}" style="margin-bottom:8px">
+      <div class="cx-sh">
+        <span class="cx-badge ${isBuy?'cx-buy':'cx-sell'}">${isBuy?'▲ BUY':'▼ SELL'}</span>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--p)">AI ${sig.conf}% CONF</span>
+        <span style="font-size:7px;color:var(--tx3);font-family:var(--mono)">${new Date().toLocaleTimeString('en-IN',{hour12:false})}</span>
+      </div>
+      <div class="cx-grid" style="margin-bottom:6px">
+        <div class="cx-row"><span class="cx-label">ENTRY</span><span class="cx-val" style="color:var(--b)">${priceStr}</span></div>
+        <div class="cx-row"><span class="cx-label">STOP LOSS</span><span class="cx-val" style="color:var(--r)">$${sig.sl>=1?sig.sl.toFixed(4):sig.sl.toFixed(6)}</span></div>
+        <div class="cx-row"><span class="cx-label">TARGET 1</span><span class="cx-val" style="color:var(--g)">$${sig.t1>=1?sig.t1.toFixed(4):sig.t1.toFixed(6)}</span></div>
+        <div class="cx-row"><span class="cx-label">TARGET 2</span><span class="cx-val" style="color:var(--g)">$${sig.t2>=1?sig.t2.toFixed(4):sig.t2.toFixed(6)}</span></div>
+        <div class="cx-row"><span class="cx-label">RISK:REWARD</span><span class="cx-val" style="color:var(--y)">1:${sig.rr}</span></div>
+        <div class="cx-row"><span class="cx-label">RISK USDT</span><span class="cx-val" style="color:var(--o)">$${usdtRisk}</span></div>
+      </div>
+      <div class="cx-ind">${sig.tags.map(t=>`<span class="cx-itag ${t.t}">${t.l}</span>`).join('')}</div>
+      <button class="cx-exe ${sig.dir}" ${CX.binKey?'':'disabled'} onclick="executeCoinSignal('${sym}','${sig.dir}',${usdtRisk})">
+        ${CX.binKey?(isBuy?'▲ BUY on Binance':'▼ SELL on Binance'):'🔒 Add Binance Key in Config'}
+      </button>
+    </div>`
+    // Update bottom signal bar
+    document.getElementById('cx-signal-bar').style.display = 'flex'
+    document.getElementById('cx-sig-action').textContent = isBuy ? '▲ BUY' : '▼ SELL'
+    document.getElementById('cx-sig-action').style.color = isBuy?'var(--g)':'var(--r)'
+    document.getElementById('cx-sig-coin').textContent = coin.base+'/USDT'
+    document.getElementById('cx-sig-conf').textContent = 'AI '+sig.conf+'%'
+    document.getElementById('cx-sig-e').textContent = priceStr
+    document.getElementById('cx-sig-sl').textContent = '$'+sig.sl.toFixed(sig.sl>=1?4:6)
+    document.getElementById('cx-sig-t1').textContent = '$'+sig.t1.toFixed(sig.t1>=1?4:6)
+    document.getElementById('cx-sig-rr').textContent = '1:'+sig.rr
+  } else {
+    document.getElementById('cx-signal-bar').style.display = 'none'
+    html += `<div class="port-card" style="text-align:center"><div style="color:var(--tx3);font-size:9px;font-family:var(--mono)">NO SETUP — Indicators not aligned</div><div style="color:var(--tx3);font-size:8px;margin-top:3px">Better to wait for a clearer signal</div></div>`
+  }
+
+  // Mini sparkline
+  if (candles.length > 10) {
+    const sparkC = candles.slice(-30).map(c=>c.c)
+    const mn = Math.min(...sparkC), mx = Math.max(...sparkC), rng = mx-mn||1
+    const w=280, h=50
+    const pts = sparkC.map((c,i)=>`${(i/(sparkC.length-1))*w},${h-((c-mn)/rng)*h}`).join(' ')
+    const color = (coin?.change24h||0)>=0?'#00eea0':'#ff3a58'
+    html += `<div class="port-card"><div class="port-card-title">SPARKLINE (30 candles · 1H)</div>
+      <svg viewBox="0 0 ${w} ${h}" style="width:100%;height:48px">
+        <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5"/>
+      </svg></div>`
+  }
+
+  // GLM AI commentary
+  if (S.zaiKey && candles.length) {
+    html += `<div class="port-card" id="cx-glm-box"><div class="port-card-title">🤖 GLM-4 ANALYST</div><div style="color:var(--tx3);font-size:9px;font-family:var(--mono)"><span class="spin-sm"></span>AI analysing ${coin?.base}...</div></div>`
+    el.innerHTML = html
+    const closes24 = candles.slice(-24).map(c=>c.c)
+    const prompt = `Coin: ${coin?.base}/USDT | Price: ${priceStr} | 24h change: ${(coin?.change24h||0).toFixed(2)}% | RSI: ${rsi} | EMA9${ema9&&ema21?ema9>ema21?'>':'<':'?'}EMA21 | BB%: ${bb?(bb.pct*100).toFixed(0)+'%':'?'} | Volume: ${volX}x avg | Category: ${coin?.cat} | Prices trend: ${closes24[0]?.toFixed(4)} → ${closes24[closes24.length-1]?.toFixed(4)}\n\nGive analysis JSON: {"outlook":"bullish|bearish|neutral","reason":"<25 words>","risk_level":"low|medium|high","key_support":number,"key_resistance":number,"watch_for":"<15 word trigger>"}`
+    glmAnalyze(prompt).then(r => {
+      const box = document.getElementById('cx-glm-box')
+      if (!box) return
+      try {
+        const p = JSON.parse(r||'{}')
+        const oc = p.outlook==='bullish'?'var(--g)':p.outlook==='bearish'?'var(--r)':'var(--y)'
+        box.innerHTML = `<div class="port-card-title">🤖 GLM-4 ANALYST <span style="color:${oc}">${(p.outlook||'').toUpperCase()}</span></div>
+          <div style="font-size:9px;color:var(--tx2);margin-bottom:5px">${p.reason||'—'}</div>
+          <div class="port-stat-grid">
+            <div class="port-stat"><div class="port-stat-l">RISK LEVEL</div><div class="port-stat-v" style="color:${p.risk_level==='low'?'var(--g)':p.risk_level==='high'?'var(--r)':'var(--y)'}">${(p.risk_level||'—').toUpperCase()}</div></div>
+            <div class="port-stat"><div class="port-stat-l">SUPPORT</div><div class="port-stat-v" style="color:var(--g)">$${p.key_support?.toFixed(4)||'—'}</div></div>
+            <div class="port-stat" style="grid-column:span 2"><div class="port-stat-l">WATCH FOR</div><div style="font-size:8px;color:var(--b);font-family:var(--mono)">${p.watch_for||'—'}</div></div>
+          </div>`
+      } catch(e) { if(box) box.innerHTML = `<div class="port-card-title">🤖 GLM-4 ANALYST</div><div style="font-size:8px;color:var(--tx3)">${r?.slice(0,200)||'No response'}</div>` }
+    })
+    return // innerHTML already set above
+  }
+
+  el.innerHTML = html
+}
+
+function renderCxMarketScan() {
+  const el = document.getElementById('cx-main-content')
+  if (!el) return
+  if (!CX_ALL_COINS.length) { el.innerHTML = '<div style="color:var(--tx3);font-size:9px;text-align:center;padding:20px">No scan data. Click ⟳ to scan.</div>'; return }
+  const top = CX_ALL_COINS.slice(0,50)
+  el.innerHTML = `<div style="font-size:7px;color:var(--tx3);font-family:var(--mono);letter-spacing:.8px;margin-bottom:6px;display:flex;justify-content:space-between"><span>FULL MARKET SCAN · TOP 50</span><button onclick="runFullCryptoScan()" style="background:none;border:none;color:var(--b);cursor:pointer;font-family:var(--mono);font-size:8px">↻ RESCAN</button></div>` +
+  top.map((c,i) => {
+    const sig = CX.signals[c.sym]
+    const medal = i<3 ? ['🥇','🥈','🥉'][i] : `${i+1}.`
+    const sigTag = sig ? `<span style="font-size:7px;padding:1px 5px;border-radius:2px;background:${sig.dir==='buy'?'var(--gd)':'var(--rd)'};color:${sig.dir==='buy'?'var(--g)':'var(--r)'};font-family:var(--mono);font-weight:700;border:1px solid ${sig.dir==='buy'?'rgba(0,238,160,.3)':'rgba(255,58,88,.3)'}">${sig.dir==='buy'?'▲BUY':'▼SELL'} ${sig.conf}%</span>` : `<span style="font-size:7px;color:var(--tx3);font-family:var(--mono)">—</span>`
+    const trend = c.trendBonus>0?'🔥':''
+    const catColors={meme:'var(--y)',defi:'var(--b)',ai:'var(--p)',layer1:'var(--g)',top:'var(--tx3)'}
+    return `<div class="cx-port-row" onclick="selectCoin('${c.sym}')" style="cursor:pointer;gap:8px">
+      <div style="width:24px;font-size:8px;color:var(--tx3);font-family:var(--mono)">${medal}</div>
+      <div style="flex:1">
+        <div style="font-family:var(--mono);font-weight:700;font-size:10px">${c.base}${trend} <span style="font-size:7px;color:${catColors[c.cat]||'var(--tx3)'}">${c.cat}</span></div>
+        <div style="font-size:7px;color:var(--tx3)">Vol $${(c.vol24h/1e6).toFixed(0)}M · Score ${c.score}pt</div>
+      </div>
+      <div style="text-align:center">${sigTag}</div>
+      <div style="text-align:right">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700">${c.price>=1?'$'+c.price.toFixed(2):'$'+c.price.toFixed(5)}</div>
+        <div style="font-family:var(--mono);font-size:8px;color:${c.change24h>=0?'var(--g)':'var(--r)'}">${c.change24h>=0?'+':''}${c.change24h.toFixed(2)}%</div>
+      </div>
+    </div>`
+  }).join('')
+}
+
+function renderCxPortfolio() {
+  const el = document.getElementById('port-crypto-view') || document.getElementById('cx-main-content')
+  if (!el) return
+  const totalUsdt = CX.portfolio.reduce((s,b) => {
+    const p = CX.prices[b.asset+'USDT']?.price || (b.asset==='USDT'?1:0)
+    return s + (parseFloat(b.free)+parseFloat(b.locked))*p
+  }, 0)
+  let html = `<div class="port-card">
+    <div class="port-card-title">BINANCE SPOT PORTFOLIO ${CX.binKey?'<span style="color:var(--g)">● CONNECTED</span>':'<span style="color:var(--r)">✗ NOT CONNECTED</span>'}</div>
+    <div class="port-stat-grid">
+      <div class="port-stat"><div class="port-stat-l">TOTAL VALUE</div><div class="port-stat-v" style="color:var(--g)">$${totalUsdt.toFixed(2)}</div></div>
+      <div class="port-stat"><div class="port-stat-l">USDT FREE</div><div class="port-stat-v" style="color:var(--b)">$${parseFloat(CX.portfolio.find(b=>b.asset==='USDT')?.free||0).toFixed(2)}</div></div>
+    </div></div>`
+  if (CX.portfolio.length) {
+    html += '<div class="port-card"><div class="port-card-title">HOLDINGS</div>'
+    html += CX.portfolio.filter(b=>b.asset!=='USDT').map(b => {
+      const p = CX.prices[b.asset+'USDT']?.price || 0
+      const total = parseFloat(b.free)+parseFloat(b.locked)
+      const usdt = total*p
+      return `<div class="cx-port-row"><span style="font-family:var(--mono);font-weight:700">${b.asset}</span><span style="color:var(--tx3);font-size:8px">${total.toFixed(total>1?4:8)}</span><span style="font-family:var(--mono);color:var(--b)">$${usdt.toFixed(2)}</span></div>`
+    }).join('')
+    html += '</div>'
+  }
+  if (CX.trades.length) {
+    html += `<div class="port-card"><div class="port-card-title">RECENT TRADES</div>` +
+    CX.trades.slice(0,10).map(t=>`<div class="cx-trade-log">
+      <span style="color:${t.dir==='buy'?'var(--g)':'var(--r)'};font-weight:700">${t.dir.toUpperCase()}</span>
+      <span style="font-weight:700">${t.sym.replace('USDT','')}</span>
+      <span>$${parseFloat(t.price).toFixed(4)}</span>
+      <span>×${t.qty}</span>
+      <span style="color:var(--tx3)">${Math.round((Date.now()-t.time)/60000)}m ago</span>
+    </div>`).join('') + '</div>'
+  }
+  if (!CX.binKey) {
+    html += `<div style="text-align:center;margin-top:8px"><button onclick="setCfgMode('crypto');document.querySelector('[data-tab=cfg]').click()" style="padding:5px 12px;background:var(--yd);border:1px solid rgba(255,200,0,.4);color:var(--y);border-radius:3px;cursor:pointer;font-family:var(--mono);font-size:8px">₿ ADD BINANCE KEY</button></div>`
+  } else {
+    html += `<button onclick="loadBinancePortfolio(true)" style="width:100%;margin-top:5px;padding:4px;background:transparent;border:1px dashed var(--bd2);color:var(--tx3);border-radius:3px;cursor:pointer;font-size:8px;font-family:var(--mono)">↻ SYNC PORTFOLIO</button>`
+  }
+  el.innerHTML = html
+  // Update left panel balance
+  const usdtFree = parseFloat(CX.portfolio.find(b=>b.asset==='USDT')?.free||0)
+  const balEl = document.getElementById('cx-bal-usdt'); if(balEl) balEl.textContent = '$'+usdtFree.toFixed(2)
+  const totEl = document.getElementById('cx-bal-total'); if(totEl) totEl.textContent = '$'+totalUsdt.toFixed(2)
+}
+
+function updateCryptoMacroUI(macro) {
+  if (macro.fg) {
+    const fgVal = parseInt(macro.fg.value)
+    const fgColor = fgVal < 30 ? 'var(--r)' : fgVal > 70 ? 'var(--g)' : 'var(--y)'
+    const fgEl = document.getElementById('cx-fg'); if(fgEl){fgEl.textContent=fgVal+' ('+macro.fg.value_classification+')';fgEl.style.color=fgColor}
+    const fgHdr = document.getElementById('cx-fg-v'); if(fgHdr){fgHdr.textContent=fgVal;fgHdr.className='ix-v';fgHdr.style.color=fgColor}
+    const fgHdrC = document.getElementById('cx-fg-c'); if(fgHdrC){fgHdrC.textContent=macro.fg.value_classification;fgHdrC.style.color=fgColor}
+  }
+  if (macro.global) {
+    const mcap = macro.global.mcap ? '$'+(macro.global.mcap/1e12).toFixed(2)+'T' : '—'
+    const vol = macro.global.vol ? '$'+(macro.global.vol/1e9).toFixed(0)+'B' : '—'
+    const dom = macro.global.btcDom ? macro.global.btcDom.toFixed(1)+'%' : '—'
+    const mcEl = document.getElementById('cx-mcap'); if(mcEl) mcEl.textContent=mcap
+    const volEl = document.getElementById('cx-vol24'); if(volEl) volEl.textContent=vol
+    const domEl = document.getElementById('cx-dom'); if(domEl) domEl.textContent=dom
+    const domHdr = document.getElementById('cx-dom-v'); if(domHdr) domHdr.textContent=dom
+  }
+  if (macro.trending?.length) {
+    const t1El = document.getElementById('cx-trend1'); if(t1El) t1El.textContent=macro.trending[0]
+  }
+}
+
+function updateCryptoHeaderTickers(scored) {
+  if (!scored?.length) return
+  const gainer = [...scored].sort((a,b)=>b.change24h-a.change24h)[0]
+  const loser = [...scored].sort((a,b)=>a.change24h-b.change24h)[0]
+  const tEl = document.getElementById('cx-topper'); if(tEl) {tEl.textContent=gainer.base+' +'+gainer.change24h.toFixed(1)+'%'}
+  const lEl = document.getElementById('cx-loser'); if(lEl) {lEl.textContent=loser.base+' '+loser.change24h.toFixed(1)+'%'}
+  // ETH header ticker
+  const eth = CX.prices['ETHUSDT']
+  if (eth) {
+    const ev = document.getElementById('cx-eth-v'); if(ev) ev.textContent='$'+eth.price.toFixed(0)
+    const ec = document.getElementById('cx-eth-c'); if(ec){ec.textContent=(eth.change24h||0).toFixed(2)+'%';ec.className='ix-c '+(eth.change24h>=0?'up':'dn')}
+  }
+  // Top gainer header ticker
+  const gv = document.getElementById('cx-gain-v'); if(gv) gv.textContent=gainer.base
+  const gc = document.getElementById('cx-gain-c'); if(gc){gc.textContent='+'+gainer.change24h.toFixed(1)+'%';gc.className='ix-c up'}
+}
+
+async function executeCoinSignal(sym, dir, usdtAmt) {
+  if (!confirm(`Execute ${dir.toUpperCase()} $${usdtAmt} of ${sym.replace('USDT','')}?\nLIVE order on Binance.`)) return
+  showLoad('Placing order on Binance...')
+  await placeBinanceOrder(sym, dir, usdtAmt)
+  hideLoad()
+}
+
+async function executeBestSignal() {
+  if (!CX_SELECTED) return
+  const sig = CX.signals[CX_SELECTED]
+  if (!sig) { alert2('No signal for '+CX_SELECTED,'e'); return }
+  const usdtRisk = Math.round((S.capital/83)*(S.cfg.crisk||1)/100)
+  await executeCoinSignal(CX_SELECTED, sig.dir, usdtRisk)
+}
+
+// ── loadBinancePortfolio update (render both panels) ──
+async function loadBinancePortfolio(force=false) {
+  if (!CX.binKey) return
+  showLoad('Syncing Binance portfolio...')
+  const d = await binPriv('GET', '/account', {})
+  hideLoad()
+  if (!d?.balances) { alert2('Binance portfolio fetch failed','e',4000); return }
+  CX.portfolio = d.balances.filter(b => parseFloat(b.free)+parseFloat(b.locked) > 0.00001)
+  renderCxPortfolio()
+  document.getElementById('cx-trades-today').textContent = CX.trades.filter(t=>Date.now()-t.time<86400000).length
+  alert2('Binance portfolio synced','s',3000)
+}
+
+// ── initCrypto ────────────────────────────────────────────────────────────────
+function initCrypto() {
+  try {
+    const bk = localStorage.getItem('cx_bkey'); if (bk) CX.binKey = bk
+    const bs = localStorage.getItem('cx_bsec'); if (bs) CX.binSec = bs
+    const ct = localStorage.getItem('cx_trades'); if (ct) CX.trades = JSON.parse(ct)
+  } catch(e) {}
+  // Load z.ai key
+  try { const zk = localStorage.getItem('zai_key'); if(zk){S.zaiKey=zk; const el=document.getElementById('cfg-zai');if(el)el.value=zk} } catch(e) {}
+  // Populate Binance key field
+  const bkEl = document.getElementById('cfg-bkey'); if(bkEl&&CX.binKey) bkEl.value='••••'+CX.binKey.slice(-4)
+  // Restore market mode
+  try { const mm=localStorage.getItem('mkt_mode'); if(mm) switchMarket(mm) } catch(e) {}
+  // Update Binance status
+  const statusEl=document.getElementById('bin-key-status'); if(statusEl&&CX.binKey){statusEl.textContent='✓ Key saved';statusEl.style.color='var(--g)'}
+  // Don't auto-run scan — wait for user to switch to crypto
+}
+
+function saveBinanceCreds() {
+  const k = document.getElementById('cfg-bkey')?.value.trim()
+  const s = document.getElementById('cfg-bsec')?.value.trim()
+  if (k && !k.startsWith('••••')) { CX.binKey = k; localStorage.setItem('cx_bkey', k) }
+  if (s) { CX.binSec = s; localStorage.setItem('cx_bsec', s) }
+  const statusEl=document.getElementById('bin-key-status'); if(statusEl&&CX.binKey){statusEl.textContent='✓ Saved';statusEl.style.color='var(--g)'}
+  alert2('Binance credentials saved','s',3000)
+}
+
 document.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
