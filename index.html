@@ -359,13 +359,13 @@ button{font-family:var(--sans)}
         <div class="zss">Powers the MiroFish-style Swarm Intelligence using Claude 3.5 Sonnet. Get your free access token via GitHub Marketplace/Models beta.</div>
       </div>
       <div class="srow"><label class="slbl">GitHub Token <span id="ak-status" style="color:var(--tx3)"></span></label><input class="sinp" id="cfg-ak" placeholder="ghp_..." type="password"></div>
-      <div class="srow"><label class="slbl">Worker Proxy URL</label><input class="sinp" id="cfg-worker" value="https://sig.shabeershz21.workers.dev" placeholder="https://...workers.dev"><div class="sdsc">Cloudflare Worker proxy handling Yahoo/Reddit/Stooq/RSS feeds.</div></div>
+      <div class="srow"><label class="slbl">Worker Proxy URL</label><input class="sinp" id="cfg-worker" value="https://sig.shabeershz21.workers.dev" placeholder="https://...workers.dev"><div class="sdsc">Cloudflare Worker proxy handling Yahoo/Reddit/RSS feeds.</div></div>
       <hr class="sdiv">
       <div class="zst">⚡ Zerodha Kite API Setup</div>
-      <div class="zss">1. Visit <a class="zsl" href="https://developers.kite.trade" target="_blank">developers.kite.trade</a><br>2. Create app → App type: Connect<br>3. Redirect URL: <b>http://127.0.0.1</b> (required for local redirect)<br>4. Copy API Key &amp; Secret from app page<br>5. Click ⚡ Connect Zerodha button → paste Key, Secret, request_token → click Exchange<br>6. Access token auto-fills. Redo daily after 6 AM.</div>
+      <div class="zss">1. Visit <a class="zsl" href="https://developers.kite.trade" target="_blank">developers.kite.trade</a><br>2. Create app → App type: Connect<br>3. Redirect URL: http://localhost<br>4. Copy API Key &amp; Secret<br>5. Login URL: kite.zerodha.com/connect/login?api_key=XXX<br>6. Grab request_token from redirect URL<br>7. Exchange for access_token (refreshed daily)</div>
       <div class="srow"><label class="slbl">Zerodha API Key</label><input class="sinp" id="cfg-key" placeholder="kitexxx..."></div>
       <div class="srow"><label class="slbl">Access Token (daily)</label><input class="sinp" id="cfg-tok" placeholder="paste access_token"><div class="sdsc">Get from: kite.trade redirect URL after login</div></div>
-      <div style="background:var(--gd);border:1px solid var(--g2);border-radius:4px;padding:7px 9px;margin-bottom:8px;font-size:8px;color:var(--g);font-family:var(--mono)">✓ Orders route through your Cloudflare Worker — no local proxy needed. Enter Worker URL above.</div>
+      <div class="notice">⚠ Browser CORS blocks direct Kite API calls. Orders route through a local Node.js proxy (port 3001). Without it, orders are simulated and logged only. See README for proxy setup.</div>
       <hr class="sdiv">
       <div class="srow"><label class="slbl">Risk per trade (%)</label><input class="sinp" id="cfg-risk" type="number" value="2" min="0.5" max="10" step="0.5"></div>
       <div class="srow"><label class="slbl">Max auto-trades / day</label><input class="sinp" id="cfg-max" type="number" value="5"></div>
@@ -390,26 +390,26 @@ button{font-family:var(--sans)}
   <div class="ztit">⚡ Connect Zerodha Kite</div>
   <div class="zinfo">
     1. <a class="zlink" href="https://developers.kite.trade" target="_blank">developers.kite.trade</a> → My Apps → Create App (type: Connect)<br>
-    2. Redirect URL: <b>http://127.0.0.1</b> · Copy your API Key &amp; Secret<br>
-    3. Open: <code style="color:var(--b)">https://kite.zerodha.com/connect/login?api_key=YOUR_KEY</code><br>
-    4. After login you land on <code>http://127.0.0.1/?request_token=XXXX</code><br>
-    5. Paste the <b>request_token</b> below and click <b>Exchange Token</b> — the app will get your access_token automatically<br>
-    6. Access token is valid until ~6 AM next day. Redo daily.
+    2. Redirect URL: <b>http://127.0.0.1</b> · Copy API Key &amp; Secret from app<br>
+    3. Login: <code style="color:var(--b)">kite.zerodha.com/connect/login?api_key=YOUR_KEY</code><br>
+    4. After login → you land on <code>http://127.0.0.1/?request_token=XXXX</code><br>
+    5. Paste request_token below → click <b>⇄ Exchange</b> → access_token auto-fills<br>
+    6. Redo daily (tokens expire ~6 AM IST). Request tokens are one-time use.
   </div>
-  <div style="background:var(--gd);border:1px solid var(--g2);border-radius:4px;padding:7px 9px;margin-bottom:10px;font-size:8px;color:var(--g);font-family:var(--mono)">✓ Orders route through your Cloudflare Worker — no local server needed.</div>
-  <div class="srow"><label class="slbl">API KEY</label><input class="sinp" id="zm-key" placeholder="kitexxx..."></div>
-  <div class="srow"><label class="slbl">API SECRET</label><input class="sinp" id="zm-secret" type="password" placeholder="your api secret"></div>
+  <div style="background:var(--gd);border:1px solid var(--g2);border-radius:4px;padding:6px 9px;margin-bottom:9px;font-size:8px;color:var(--g);font-family:var(--mono)">✓ SHA-256 checksum computed on Worker — no manual hashing needed.</div>
+  <div class="srow"><label class="slbl">API KEY</label><input class="sinp" id="zm-key" placeholder="kite..."></div>
+  <div class="srow"><label class="slbl">API SECRET</label><input class="sinp" id="zm-secret" type="password" placeholder="your api secret (used for token exchange only)"></div>
   <div class="srow">
-    <label class="slbl">REQUEST TOKEN <span style="color:var(--tx3)">(from redirect URL after login)</span></label>
+    <label class="slbl">REQUEST TOKEN <span id="zm-rt-hint" style="color:var(--tx3)">(one-time, from redirect URL)</span></label>
     <div style="display:flex;gap:5px">
-      <input class="sinp" id="zm-reqtok" placeholder="fIi6rdNYED4p3ha9..." style="flex:1">
+      <input class="sinp" id="zm-reqtok" placeholder="paste request_token here" style="flex:1">
       <button onclick="exchangeKiteToken()" id="zm-exch-btn" style="padding:5px 10px;background:var(--b);color:var(--bg0);border:none;border-radius:3px;font-weight:700;cursor:pointer;font-size:10px;font-family:var(--mono);white-space:nowrap">⇄ Exchange</button>
     </div>
-    <div class="sdsc">Paste the request_token from your redirect URL, then click Exchange to get access_token automatically</div>
+    <div class="sdsc">⚠ Each request_token can only be used ONCE. Get a fresh one if exchange fails.</div>
   </div>
   <div class="srow">
-    <label class="slbl">ACCESS TOKEN <span style="color:var(--g)" id="zm-tok-status"></span></label>
-    <input class="sinp" id="zm-tok" placeholder="auto-filled after Exchange, or paste manually">
+    <label class="slbl">ACCESS TOKEN <span style="color:var(--g);font-size:8px" id="zm-tok-status"></span></label>
+    <input class="sinp" id="zm-tok" placeholder="auto-filled after Exchange — or paste manually">
   </div>
   <div style="display:flex;gap:6px;margin-top:4px">
     <button onclick="closeZModal()" class="mcnc">Cancel</button>
@@ -503,166 +503,96 @@ function alert2(msg,type='i',dur=4500){
   setTimeout(()=>{el.style.opacity='0';el.style.transition='opacity .4s';setTimeout(()=>el.remove(),400);},dur);
 }
 
-// ═══════════ WORKER PROXY FETCH (multi-source cascade) ═══════════
+// ═══════════ WORKER PROXY FETCH ═══════════
 const WB = () => (S.workerUrl || '').replace(/\/+$/, '')
 
-// CORS proxies for direct Yahoo fallback (only used for non-Stooq calls if Worker fails)
-const CPROX = [
-  u => 'https://corsproxy.io/?' + encodeURIComponent(u),
-  u => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u),
-]
-let _cpx = 0
-async function fetchViaCORS(url, ms = 7000) {
-  const order = [_cpx, ...[0,1].filter(i=>i!==_cpx)]
-  for (const i of order) {
-    try {
-      const r = await fetch(CPROX[i](url), { signal: AbortSignal.timeout(ms) })
-      if (!r.ok) throw new Error('HTTP ' + r.status)
-      const txt = await r.text()
-      if (!txt || txt.length < 5) throw new Error('Empty')
-      _cpx = i
-      return JSON.parse(txt)
-    } catch(e) {}
-  }
-  return null
-}
-
-// Map Yahoo symbol → Stooq symbol
+// Stooq symbol mapping
 function toStooq(sym) {
-  if (sym === '^NSEI')   return '%5ENSEI'
-  if (sym === '^BSESN')  return '%5EBSESN'
-  if (sym === '^NSEBANK')return '%5ENSEBANK'
-  if (sym === '^GSPC')   return '%5EGSPC'
-  if (sym === '^IXIC')   return '%5EIXIC'
-  if (sym === '^TNX')    return '%5ETNX'
-  if (sym === 'CL=F')    return 'cl.f'
-  if (sym === 'GC=F')    return 'gc.f'
-  if (sym === 'INR=X')   return 'inr=x'
-  return sym.toLowerCase().replace('^', '%5E')
+  const m={'^NSEI':'%5ENSEI','^BSESN':'%5EBSESN','^NSEBANK':'%5ENSEBANK',
+    '^GSPC':'%5EGSPC','^IXIC':'%5EIXIC','^TNX':'%5ETNX',
+    'CL=F':'cl.f','GC=F':'gc.f','INR=X':'inr=x'}
+  return m[sym] || sym.toLowerCase().replace('^','%5E')
 }
 
-// Parse Stooq CSV → fake Yahoo quote response shape
+// Parse Stooq CSV → Yahoo quote shape
 function stooqCSVtoQuote(csv, symbol) {
   const lines = csv.trim().split('\n')
   if (lines.length < 2) return null
-  const rows = lines.slice(1).map(l => l.split(','))
-    .filter(r => r.length >= 6)
-    .sort((a, b) => b[0].localeCompare(a[0]))
+  const rows = lines.slice(1).map(l=>l.split(','))
+    .filter(r=>r.length>=6).sort((a,b)=>b[0].localeCompare(a[0]))
   if (!rows.length) return null
-  const [date, open, high, low, close, vol] = rows[0]
+  const [,open,high,low,close,vol] = rows[0]
   const prev = rows[1]
-  const cp = parseFloat(close), pp = prev ? parseFloat(prev[4]) : cp
-  const chg = +(cp - pp).toFixed(2)
-  const chgPct = pp ? +((chg / pp) * 100).toFixed(2) : 0
-  return {
-    symbol, regularMarketPrice: cp, regularMarketOpen: parseFloat(open),
-    regularMarketDayHigh: parseFloat(high), regularMarketDayLow: parseFloat(low),
-    regularMarketVolume: parseInt(vol) || 0, regularMarketChange: chg,
-    regularMarketChangePercent: chgPct, regularMarketPreviousClose: pp,
-  }
+  const cp=parseFloat(close), pp=prev?parseFloat(prev[4]):cp
+  const chg=+(cp-pp).toFixed(2), chgPct=pp?+((chg/pp)*100).toFixed(2):0
+  return {symbol,regularMarketPrice:cp,regularMarketOpen:parseFloat(open),
+    regularMarketDayHigh:parseFloat(high),regularMarketDayLow:parseFloat(low),
+    regularMarketVolume:parseInt(vol)||0,regularMarketChange:chg,
+    regularMarketChangePercent:chgPct,regularMarketPreviousClose:pp}
 }
 
-// Updated Stooq Proxy Fallback via Worker
+// Fetch Stooq via Worker /stooq endpoint (no browser CORS issue)
 async function fetchStooqQuotes(symbols) {
-  const rawResults = await Promise.allSettled(
-    symbols.map(async sym => {
-      const sq = toStooq(sym);
-      const url = `${WB()}/stooq?s=${encodeURIComponent(sq)}`;
-      try {
-        const r = await fetch(url, { signal: AbortSignal.timeout(6000) });
-        if (!r.ok) return null;
-        const txt = await r.text();
-        if (!txt || txt.length < 20 || txt.includes('No data')) return null;
-        return stooqCSVtoQuote(txt, sym);
-      } catch(e) {
-        return null;
-      }
-    })
-  );
-  const quotes = rawResults.map(r => r.status === 'fulfilled' ? r.value : null).filter(Boolean);
-  if (!quotes.length) return null;
-  return { quoteResponse: { result: quotes, error: null } };
+  const results = await Promise.allSettled(symbols.map(async sym => {
+    const sq = toStooq(sym)
+    try {
+      const r = await fetch(`${WB()}/stooq?s=${encodeURIComponent(sq)}`,{signal:AbortSignal.timeout(7000)})
+      if(!r.ok) return null
+      const txt = await r.text()
+      if(!txt||txt.length<20||txt.includes('No data')) return null
+      return stooqCSVtoQuote(txt, sym)
+    } catch(e) { return null }
+  }))
+  const quotes = results.map(r=>r.status==='fulfilled'?r.value:null).filter(Boolean)
+  if(!quotes.length) return null
+  return {quoteResponse:{result:quotes,error:null}}
 }
 
 async function fetchWQuotes(symbols) {
   const symsArr = Array.isArray(symbols) ? symbols : symbols.split(',')
   const symsStr = symsArr.join(',')
-
-  // 1. Try worker
+  // 1. Worker Yahoo
   try {
-    const res = await fetch(`${WB()}/quotes?symbols=${encodeURIComponent(symsStr)}`, { signal: AbortSignal.timeout(8000) })
-    if (res.ok) {
-      const d = await res.json()
-      if (d?.quoteResponse?.result?.length) return d
-    }
-  } catch(e) {}
-
-  // 2. Direct Yahoo via CORS proxy
-  const yUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(symsStr)}`
-  try {
-    const d = await fetchViaCORS(yUrl, 7000)
-    if (d?.quoteResponse?.result?.length) return d
-  } catch(e) {}
-
-  // 3. Stooq CSV fallback via native worker
-  console.warn('Yahoo failed for quotes, trying native Worker Stooq proxy...')
+    const res = await fetch(`${WB()}/quotes?symbols=${encodeURIComponent(symsStr)}`,{signal:AbortSignal.timeout(8000)})
+    if(res.ok){const d=await res.json();if(d?.quoteResponse?.result?.length) return d}
+  } catch(e){}
+  // 2. Worker Stooq (native, no CORS)
+  console.warn('Yahoo 503 — falling back to Stooq via Worker')
   return await fetchStooqQuotes(symsArr)
 }
 
 async function fetchWChart(sym, interval, range) {
-  // 1. Try worker
+  // 1. Worker Yahoo chart
   try {
-    const res = await fetch(`${WB()}/chart?sym=${encodeURIComponent(sym)}&interval=${interval}&range=${range}`, { signal: AbortSignal.timeout(8000) })
-    if (res.ok) {
-      const d = await res.json()
-      if (d?.chart?.result?.[0]) return d
-    }
-  } catch(e) {}
-
-  // 2. Direct Yahoo via CORS proxy
-  const yUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=${interval}&range=${range}&includePrePost=false`
-  try {
-    const d = await fetchViaCORS(yUrl, 7000)
-    if (d?.chart?.result?.[0]) return d
-  } catch(e) {}
-
-  // 3. For chart data, native Worker Stooq fallback
-  if (interval === '1d' || interval === '1wk') {
-    const rangeMap = { '1mo': 30, '3mo': 90, '6mo': 180, '1y': 365, '5d': 5, '1d': 1 }
+    const res = await fetch(`${WB()}/chart?sym=${encodeURIComponent(sym)}&interval=${interval}&range=${range}`,{signal:AbortSignal.timeout(8000)})
+    if(res.ok){const d=await res.json();if(d?.chart?.result?.[0]) return d}
+  } catch(e){}
+  // 2. Worker Stooq CSV → chart shape
+  if(interval==='1d'||interval==='1wk'||interval==='15m'){
     const sq = toStooq(sym)
-    const proxyUrl = `${WB()}/stooq?s=${encodeURIComponent(sq)}`;
-    
+    const rangeDay={'1d':1,'5d':5,'1mo':30,'3mo':90,'6mo':180,'1y':365}
     try {
-      const r = await fetch(proxyUrl, { signal: AbortSignal.timeout(7000) })
-      if (r.ok) {
+      const r = await fetch(`${WB()}/stooq?s=${encodeURIComponent(sq)}`,{signal:AbortSignal.timeout(7000)})
+      if(r.ok){
         const txt = await r.text()
-        if (txt && txt.length >= 50 && !txt.includes('No data')) {
-          const lines = txt.trim().split('\n').slice(1)
-            .map(l => l.split(','))
-            .filter(row => row.length >= 6)
-            .sort((a, b) => a[0].localeCompare(b[0]))
-          const days = rangeMap[range] || 90
-          const sliced = lines.slice(-days)
-          if (sliced.length >= 5) {
-            const timestamps = sliced.map(row => Math.floor(new Date(row[0]).getTime() / 1000))
-            const opens   = sliced.map(row => parseFloat(row[1]))
-            const highs   = sliced.map(row => parseFloat(row[2]))
-            const lows    = sliced.map(row => parseFloat(row[3]))
-            const closes  = sliced.map(row => parseFloat(row[4]))
-            const volumes = sliced.map(row => parseInt(row[5]) || 0)
-            return {
-              chart: { result: [{
-                timestamp: timestamps,
-                indicators: { quote: [{ open: opens, high: highs, low: lows, close: closes, volume: volumes }] },
-                meta: { symbol: sym, exchangeName: 'NSE', currency: 'INR' }
-              }], error: null }
-            }
+        if(txt&&txt.length>50&&!txt.includes('No data')){
+          const lines=txt.trim().split('\n').slice(1).map(l=>l.split(','))
+            .filter(r=>r.length>=6).sort((a,b)=>a[0].localeCompare(b[0]))
+          const days=rangeDay[range]||90
+          const sl=lines.slice(-days)
+          if(sl.length>=5){
+            return {chart:{result:[{
+              timestamp:sl.map(r=>Math.floor(new Date(r[0]).getTime()/1000)),
+              indicators:{quote:[{open:sl.map(r=>parseFloat(r[1])),high:sl.map(r=>parseFloat(r[2])),
+                low:sl.map(r=>parseFloat(r[3])),close:sl.map(r=>parseFloat(r[4])),
+                volume:sl.map(r=>parseInt(r[5])||0)}]},
+              meta:{symbol:sym,exchangeName:'NSE',currency:'INR'}
+            }],error:null}}
           }
         }
       }
-    } catch(e) { console.warn('Worker Stooq chart fallback failed', e); }
+    } catch(e){}
   }
-
   return null
 }
 
@@ -675,6 +605,7 @@ async function fetchWRss(feedUrl) {
 }
 
 async function fetchWReddit(sub) {
+  // Try worker first, then direct (direct works in some environments)
   try {
     const res = await fetch(`${WB()}/reddit?sub=${sub}`, { signal: AbortSignal.timeout(7000) })
     if (res.ok) return await res.json()
@@ -686,9 +617,10 @@ async function fetchWReddit(sub) {
   return { data: { children: [] } }
 }
 
-// Kite via Worker
+// Kite via Worker — forwards credentials as custom headers so Worker can proxy
 async function kiteViaWorker(method, path, body = null) {
   if (!S.workerUrl || !S.z.key || !S.z.tok) return null
+  // Guard: don't call Kite if credentials look invalid (not entered yet)
   if (S.z.key.length < 5 || S.z.tok.length < 5) return null
   try {
     const opts = {
@@ -703,6 +635,7 @@ async function kiteViaWorker(method, path, body = null) {
     if (body) opts.body = body
     const res = await fetch(`${WB()}/kite${path}`, opts)
     if (!res.ok) {
+      // 403 = wrong credentials or token expired, not a CORS issue
       if (res.status === 403 || res.status === 401) {
         console.warn('Kite auth failed (' + res.status + '): Check API key & access token in Config tab')
         if (res.status === 403) {
@@ -719,6 +652,7 @@ async function kiteViaWorker(method, path, body = null) {
 
 // Fetch real Kite portfolio data
 async function fetchKitePortfolio() {
+  // Only attempt if we have real-looking credentials
   if (!S.z.ok || !S.z.key || !S.z.tok || S.z.key.length < 5 || S.z.tok.length < 5) return
   const [margins, holdings, positions] = await Promise.all([
     kiteViaWorker('GET', '/user/margins'),
@@ -894,6 +828,8 @@ async function fetchMacro(){
 
 async function runSentiment(sym){
   const shortSym=sym.replace('.NS','').replace('^',''),info=DB.find(s=>s.sym===sym);
+  // Use multiple news sources — Google News goes through worker (replaced by Bing News in worker)
+  // ET Markets, LiveMint, MoneyControl as direct backups
   const [gNews, reddit, etNews, mintNews, macroData] = await Promise.all([
     fetchRSS(`https://news.google.com/rss/search?q=${encodeURIComponent(shortSym+' NSE stock India')}&hl=en-IN&gl=IN&ceid=IN:en`, 'Bing/Google News'),
     fetchReddit(),
@@ -963,7 +899,7 @@ function genSignal(closes,highs,lows,volumes,sentScore,sym){
 }
 function posSz(cap,riskPct,entry,sl){const ra=cap*(riskPct/100),rps=Math.abs(entry-sl);if(rps<=0)return{qty:0,capUsed:0,ra:0};const qty=Math.floor(ra/rps);return{qty,capUsed:qty*entry,ra};}
 
-// ═══════════ ZERODHA KITE EXECUTION ═══════════
+// ═══════════ ZERODHA KITE ═══════════
 async function kiteOrder(sym,dir,qty,price){
   if(!S.z.ok){alert2('Connect Zerodha first — Config tab','e');return null;}
   if(!S.z.key||S.z.key.length<5||!S.z.tok||S.z.tok.length<5){
@@ -972,6 +908,7 @@ async function kiteOrder(sym,dir,qty,price){
   const tradeSym=sym.replace('.NS','').toUpperCase();
   const body=new URLSearchParams({tradingsymbol:tradeSym,exchange:'NSE',transaction_type:dir.toUpperCase(),order_type:'MARKET',quantity:String(qty),product:'CNC',validity:'DAY'}).toString();
 
+  // Primary: Worker proxy (solves CORS & origin checks)
   const wd = await kiteViaWorker('POST', '/orders/regular', body)
   if(wd?.status==='success'){
     alert2('✓ '+dir.toUpperCase()+' executed via Worker: '+qty+'×'+tradeSym+' ₹'+f2(price),'s',7000)
@@ -983,6 +920,7 @@ async function kiteOrder(sym,dir,qty,price){
     S.z.ok=false; return null
   }
 
+  // Simulate only if worker also failed for non-auth reason
   const simId='SIM-'+Date.now()
   alert2('⚠ Order SIMULATED — Worker: '+WB()+' | Kite token may be expired','w',9000)
   console.warn('Order simulation:',{tradeSym,dir,qty,price,workerResult:wd})
@@ -1202,9 +1140,12 @@ Simulate swarm consensus. Output ONLY valid JSON (no markdown, no explanation):
     const resp=await fetch('https://models.inference.ai.azure.com/chat/completions',{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer ' + S.githubToken},
-      body:JSON.stringify({model:'claude-3-5-sonnet',max_tokens:600,temperature: 0.7,messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({model:'claude-3-5-sonnet-20241022',max_tokens:600,temperature:0.7,messages:[{role:'user',content:prompt}]})
     });
-    if(!resp.ok) throw new Error('API ' + resp.status);
+    if(!resp.ok){
+      if(resp.status===401) return {summary:'GitHub Token invalid/expired. Get new token from github.com/settings/tokens with models:read scope.',bias:'neutral',confidence:0,agent_voices:[],key_themes:[],crowd_split:{bulls:33,bears:33,sideline:34},risk_flag:'none',twitter_proxy:''};
+      throw new Error('API ' + resp.status);
+    }
     const data = await resp.json();
     const txt = data.choices[0].message.content;
     const cleaned = txt.replace(/```json|```/g,'').trim();
@@ -1407,6 +1348,7 @@ function schedRefresh(){
   S.refreshTimer=setInterval(async()=>{
     await refreshAll();
     if(S.sym)await selectStock(S.sym);
+    // Only sync Kite if credentials actually entered and valid-length
     if(S.z.ok&&S.z.key?.length>5&&S.z.tok?.length>5) fetchKitePortfolio();
   },S.cfg.ref*60*1000);
 }
@@ -1416,77 +1358,90 @@ function openCapModal(){document.getElementById('minp').value=S.capital;document
 function closeModal(){document.getElementById('mov').classList.remove('open');}
 function saveCapital(){const v=parseFloat(document.getElementById('minp').value);if(isNaN(v)||v<1000){alert2('Min \u20b91,000','e');return;}S.capital=v;save();updateCap();closeModal();}
 document.getElementById('mov').onclick=e=>{if(e.target===document.getElementById('mov'))closeModal();};
-function openZModal(){
-  document.getElementById('zm-key').value=S.z.key||'';
-  document.getElementById('zm-tok').value=S.z.tok||'';
-  document.getElementById('zm-secret').value=S.z.secret||'';
-  document.getElementById('zm-reqtok').value='';
-  document.getElementById('zm-tok-status').textContent='';
-  document.getElementById('zmov').classList.add('open');
-}
+function openZModal(){document.getElementById('zm-key').value=S.z.key||'';document.getElementById('zm-tok').value=S.z.tok||'';document.getElementById('zmov').classList.add('open');}
 function closeZModal(){document.getElementById('zmov').classList.remove('open');}
-
-async function exchangeKiteToken() {
+// Exchange request_token → access_token via Worker (SHA-256 done server-side)
+async function exchangeKiteToken(){
   const key    = document.getElementById('zm-key').value.trim()
   const secret = document.getElementById('zm-secret').value.trim()
   const reqTok = document.getElementById('zm-reqtok').value.trim()
-  if (!key || !secret || !reqTok) {
-    alert2('Enter API Key, API Secret, and Request Token first', 'e'); return
-  }
+  if(!key){alert2('Enter your API Key first','e');return;}
+  if(!secret){alert2('Enter your API Secret — needed to compute checksum','e');return;}
+  if(!reqTok){alert2('Paste the request_token from redirect URL','e');return;}
+  if(reqTok.length < 10){alert2('request_token too short — paste full token from URL','e');return;}
   const btn = document.getElementById('zm-exch-btn')
-  btn.textContent = '…'; btn.disabled = true
-
-  const body = new URLSearchParams({ api_key: key, api_secret: secret, request_token: reqTok }).toString()
-  try {
-    const res = await fetch(`${WB()}/kite/session/token`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+  btn.textContent='…'; btn.disabled=true
+  try{
+    // Send secret as header so Worker can SHA-256(api_key+request_token+api_secret)
+    // Body only contains api_key + request_token (no raw secret in body)
+    const body = new URLSearchParams({api_key:key, request_token:reqTok}).toString()
+    const res = await fetch(WB()+'/kite/session/token',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/x-www-form-urlencoded',
         'X-Kite-Api-Key': key,
+        'X-Kite-Api-Secret': secret,   // Worker computes SHA-256 from this
         'X-Kite-Access-Token': '',
         'X-Kite-Version': '3',
       },
       body,
-      signal: AbortSignal.timeout(12000)
+      signal: AbortSignal.timeout(14000)
     })
     const d = await res.json()
-    if (d?.data?.access_token) {
+    if(d?.data?.access_token){
       const tok = d.data.access_token
       document.getElementById('zm-tok').value = tok
-      document.getElementById('zm-tok-status').textContent = '✓ Received!'
+      document.getElementById('zm-tok-status').textContent = '✓ Got it!'
       document.getElementById('cfg-key').value = key
       document.getElementById('cfg-tok').value = tok
-      alert2('✓ Access token received! Click Save & Connect.', 's', 5000)
+      S.z.key=key; S.z.tok=tok; S.z.secret=secret; S.z.ok=true; save()
+      alert2('✓ Access token received! Click Save & Connect.','s',6000)
     } else {
-      const msg = d?.message || d?.error || JSON.stringify(d)
-      alert2('Token exchange failed: ' + msg, 'e', 8000)
-      console.error('Kite session/token response:', d)
+      const msg = d?.message||d?.error||JSON.stringify(d)
+      // If token already used, tell user clearly
+      if(msg.includes('Token is invalid')||msg.includes('Invalid `checksum`')||msg.includes('TokenException')){
+        alert2('⚠ request_token already used or expired! Get a FRESH one:\n' +
+  'kite.zerodha.com/connect/login?api_key=' + key,
+  'e',
+  12000)
+      } else {
+        alert2('Exchange failed: '+msg,'e',9000)
+      }
+      console.error('Kite exchange response:',d)
     }
-  } catch(e) {
-    alert2('Token exchange error: ' + e.message, 'e', 7000)
-    console.error('exchangeKiteToken error:', e)
+  }catch(e){
+    alert2('Exchange error: '+e.message,'e',7000)
+    console.error('exchangeKiteToken:',e)
   }
-  btn.textContent = '⇄ Exchange'; btn.disabled = false
+  btn.textContent='⇄ Exchange'; btn.disabled=false
 }
 
 function saveZCredentials(){
   const key = document.getElementById('zm-key').value.trim()
   const tok  = document.getElementById('zm-tok').value.trim()
-  if (!key || !tok) {
-    alert2('API Key and Access Token required. Use the Exchange button if you only have a request_token.', 'e')
-    return
+  if(!key||!tok){
+    alert2('Need both API Key and Access Token. Use ⇄ Exchange button with your request_token.','e'); return
   }
   const secret = document.getElementById('zm-secret').value.trim()
-  if (secret) S.z.secret = secret
-  S.z.key = key; S.z.tok = tok; S.z.ok = true; save()
-  document.getElementById('z-btn').className = 'ok'
-  document.getElementById('z-btn').textContent = '\u2713 Zerodha Connected'
-  document.getElementById('cfg-key').value = key
-  document.getElementById('cfg-tok').value = tok
+  if(secret) S.z.secret = secret
+  S.z.key=key; S.z.tok=tok; S.z.ok=true; save()
+  document.getElementById('z-btn').className='ok'
+  document.getElementById('z-btn').textContent='\u2713 Zerodha Connected'
+  if(document.getElementById('cfg-key')) document.getElementById('cfg-key').value=key
+  if(document.getElementById('cfg-tok')) document.getElementById('cfg-tok').value=tok
   closeZModal()
-  alert2('Zerodha connected. Auto-trading available when AUTO mode armed.', 's', 6000)
+  alert2('Zerodha connected! Auto-trading enabled when mode=AUTO.','s',6000)
   setTimeout(fetchKitePortfolio, 1500)
 }
+function openZModal(){
+  document.getElementById('zm-key').value   = S.z.key||''
+  document.getElementById('zm-tok').value   = S.z.tok||''
+  if(document.getElementById('zm-secret')) document.getElementById('zm-secret').value = S.z.secret||''
+  if(document.getElementById('zm-reqtok')){ document.getElementById('zm-reqtok').value=''; }
+  if(document.getElementById('zm-tok-status')) document.getElementById('zm-tok-status').textContent=''
+  document.getElementById('zmov').classList.add('open')
+}
+function closeZModal(){document.getElementById('zmov').classList.remove('open');}
 document.getElementById('zmov').onclick=e=>{if(e.target===document.getElementById('zmov'))closeZModal();};
 
 // ═══════════ SEARCH ═══════════
@@ -1538,8 +1493,9 @@ async function init(){
   S.usedCapital=S.trades.filter(t=>!t.exitPrice).reduce((s,t)=>s+t.entryPrice*t.qty,0);
   updateCap();
   alert2('NSESignal PRO ready \u2014 Zerodha Kite + AI Sentiment (Worker Routed)','i',5000);
+  // Only fetch Kite portfolio if credentials are actually stored and look valid
   if(S.z.ok&&S.z.key?.length>5&&S.z.tok?.length>5){
-    setTimeout(fetchKitePortfolio, 2000);
+    setTimeout(fetchKitePortfolio, 2000); // slight delay after init
   }
 }
 document.addEventListener('DOMContentLoaded',init);
